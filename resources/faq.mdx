@@ -1,0 +1,38 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about Huam"
+---
+
+# FAQ
+
+<AccordionGroup>
+<Accordion title="How does USDhm maintain its peg?">
+USDhm is minted and redeemed 1:1 with USDC. There is no algorithmic mechanism or fractional reserve—every USDhm in circulation is backed by USDC held in protocol contracts. The only trust assumptions are USDC's own peg stability and the security of the underlying blockchain.
+</Accordion>
+
+<Accordion title="Can I lose money staking sUSDhm?">
+Yes. Huam runs an active trading strategy with inherent risks. While positions are hedged, costs can exceed revenue in certain conditions: hedging costs during high volatility, estimation errors in pool selection, or transaction costs during rebalancing.
+
+Short-term losses are absorbed by the Reward Manager buffer. However, if losses exceed the buffer, they are passed to the Staking Vault, reducing the sUSDhm exchange rate. Stakers should understand this is a managed yield strategy, not a risk-free return.
+</Accordion>
+
+<Accordion title="Who can mint USDhm?">
+Minting is restricted to whitelisted addresses. Non-whitelisted users can acquire USDhm on secondary markets (e.g., DEX pools) and stake it permissionlessly. Staking, unstaking, and redeeming are open to all users.
+</Accordion>
+
+<Accordion title="Can I withdraw at any time?">
+Unstaking sUSDhm requires a 7-day lockup period. After initiating unstake, you wait 7 days before claiming USDhm. Once you have USDhm, redeeming to USDC is available immediately with no delay, subject to a 0.1% fee.
+</Accordion>
+
+<Accordion title="Is Huam audited?">
+Huam is currently in MVP phase. Smart contracts have not been fully audited. Users should not interact with the protocol without understanding the associated implementation risks. Audit status will be updated as the protocol matures.
+</Accordion>
+
+<Accordion title="How is this different from other yield-bearing stablecoins?">
+Most yield-bearing stablecoins derive returns from basis arbitrage (funding rates) or off-chain assets (T-bills, money markets). Huam sources yield from DEX LP fees—a higher but more variable yield source. The tradeoff is increased complexity in position management and hedging, which the protocol handles automatically.
+</Accordion>
+
+<Accordion title="How can I verify protocol holdings and performance?">
+All LP positions, hedge positions, and P&L are verifiable onchain. The Collector and Adaptor contracts hold protocol assets directly—users can inspect positions, collateral levels, and historical performance at any time. Exchange margin balances used for hedging are held through OES (Off-Exchange Settlement) providers, keeping assets in custody while delegating trading access to exchanges.
+</Accordion>
+</AccordionGroup>

@@ -1,0 +1,22 @@
+---
+title: "How does Huam Work"
+description: "Understanding the flow of funds through the protocol"
+---
+
+# How does Huam Work
+
+![How Huam Works](/images/image.png)
+
+The movement of funds through Huam follows a defined path:
+
+1. **Deposit**: User mints USDhm with USDC. Collateral held in Minter contract.
+2. **Stake**: User deposits USDhm into the Staking Vault, receiving sUSDhm. The corresponding USDC collateral transfers from Minter to Collector.
+3. **Deployment**: Collector allocates funds between:
+    - DEX LP positions (via Adaptors)
+    - Exchange margin accounts (for hedging)
+4. **Yield Collection**: Revenue from LP fees and funding payments flows to the Reward Manager.
+5. **Distribution**: Reward Manager releases yield to the Staking Vault, increasing the sUSDhm exchange rate.
+
+Unstaked USDhm remains fully backed by USDC in the Minter contract, ensuring immediate 1:1 redemption availability.
+
+Withdrawal from the vault takes reverse of above process. Collector sends corresponding collateral(USDC) to sUSDhm contract, and then directed to Minter contract again when user claims the withdrawal request.

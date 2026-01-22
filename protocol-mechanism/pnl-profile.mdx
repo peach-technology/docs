@@ -1,0 +1,36 @@
+---
+title: "PnL Profile of a DEX LP Position"
+description: "Understanding impermanent loss and hedging fundamentals"
+---
+
+# PnL Profile of a DEX LP Position
+
+This chapter explains how Huam hedges DEX LP positions to generate managed yield while minimizing risk and volatility from underlying assets. It assumes familiarity with Uniswap V3 style concentrated liquidity LP positions and basic options concepts.
+
+---
+
+To understand Huam's hedging approach, let's walk through a concrete example.
+
+Assume we enter an ETH-USDC pool on Uniswap V3 with a symmetric ±10% price range centered on the current price. Our initial deposit is 1 ETH and 3,000 USDC (assuming ETH price is $3,000).
+
+This LP position earns trading fees from swaps that occur within our range. However, it is also exposed to **impermanent loss (IL)**—the difference in value between holding the LP position versus simply holding the original assets. As price moves away from the entry point in either direction, IL increases.
+
+![PnL Profile 1](/images/image 2.png)
+
+![PnL Profile 2](/images/image 3.png)
+
+*Figure: PnL profile of LP position vs. price*
+
+The most intuitive way to remove directional exposure is to add a short position on the underlying asset. If we short 1 ETH, we eliminate the risk of ETH price movements affecting our portfolio value—at least in a linear sense.
+
+However, even with this short hedge in place, the portfolio still experiences losses when price moves within the price range. This happens because impermanent loss has a **nonlinear, concave profile**. A static short position, which moves linearly with price, cannot fully offset this curved loss profile.
+
+For a symmetric price range, the maximum impermanent loss at either boundary is approximately 25% of the range width.
+
+$$
+IL_{max} \approx \frac{r}{4}
+$$
+
+where $r$ is the price range width. For a ±10% range, expect ~2.5% loss if price reaches either bound.
+
+This is the fundamental dynamic of DEX LP positions. Evaluating profitability comes down to a simple comparison, where the position is profitable when fee revenue exceeds impermanent loss, and unprofitable when fees fall short.

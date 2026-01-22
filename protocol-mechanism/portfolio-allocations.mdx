@@ -1,0 +1,29 @@
+---
+title: "Portfolio Allocations"
+description: "How Huam selects and allocates capital across DEX pools"
+---
+
+# Portfolio Allocations
+
+Huam continuously scans pools across multiple DEXs and networks to identify the most attractive opportunities. The allocation process combines quantitative estimation with systematic risk management.
+
+For each candidate pool, we estimate two key inputs:
+
+1. **Fee APR**: Projected based on historical trading volume, current liquidity depth, and the fee tier of the pool. Volume and liquidity fluctuate, so we use statistical methods that account for mean reversion and recent trends.
+2. **Underlying Volatility**: Estimated using models like HAR (Heterogeneous Autoregressive), which capture volatility dynamics across multiple time horizons. Accurate volatility estimation is critical because it directly determines the cost of hedging.
+
+With these estimates, we calculate the expected return for each pool:
+
+The hedge cost corresponds to the theoretical option premium required to neutralize impermanent loss. This premium is proportional to the volatility of the underlying assets—higher volatility means more expensive hedging.
+
+A pool with 50% APR but 80% underlying volatility may be less attractive than a pool with 25% APR but 30% volatility. The framework allows us to make these comparisons on a consistent, risk-adjusted basis.
+
+## Position Selection and Diversification
+
+Based on expected returns, we:
+
+1. Rank all candidate pools by risk-adjusted expected return
+2. Select the top N pools for deployment, where N scales with total protocol AUM
+3. Apply concentration limits per pool, per DEX, and per network to manage idiosyncratic risks
+
+Diversification across multiple pools smooths returns and reduces the impact of any single position underperforming.
