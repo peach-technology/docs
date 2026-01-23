@@ -3,15 +3,13 @@ title: "Hedging Impermanent Loss with Options"
 description: "Using options to hedge the nonlinear risk of LP positions"
 ---
 
-# Hedging Impermanent Loss with Options
-
 The challenge with hedging impermanent loss is its nonlinearity and convexity. Spot positions and perpetual futures move linearly with price—they gain or lose value in direct proportion to price changes. Impermanent loss, by contrast, is convex: the loss accelerates as price moves further from the entry point.
 
 This mismatch means linear instruments alone cannot neutralize IL. We need an instrument that also has convexity—one that gains value at an accelerating rate as price moves in either direction.
 
 **Options provide exactly this property.** For a symmetric LP range, a **straddle position** (buying both an at-the-money put and an at-the-money call) creates a payoff profile that mirrors the shape of impermanent loss. As price moves away from the strike in either direction, the straddle gains value, offsetting the IL incurred by the LP position.
 
-![Combined PnL](/images/image 4.png)
+![Combined PnL](/images/image4.png)
 
 *Figure: Combined PnL of LP + Short + Straddle*
 

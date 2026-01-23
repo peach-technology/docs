@@ -1,0 +1,11 @@
+/* Dark mode: brighter body text for better readability */
+.dark #content,
+.dark .mdx-content,
+.dark #content span[data-as="p"],
+.dark #content span,
+.dark #content li,
+.dark .mdx-content span[data-as="p"],
+.dark .mdx-content span,
+.dark .mdx-content li {
+  color: #e5e5e5 !important;
+}

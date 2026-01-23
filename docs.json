@@ -2,69 +2,70 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Huam Documentation",
+  "css": "/custom.css",
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "navigation": {
-    "tabs": [
+    "groups": [
       {
-        "tab": "Documentation",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "overview/what-is-huam",
-              "overview/why-huam"
-            ]
-          },
-          {
-            "group": "Protocol Architecture",
-            "pages": [
-              "protocol-architecture/how-it-works",
-              "protocol-architecture/stablecoin",
-              "protocol-architecture/staked-stablecoin",
-              "protocol-architecture/smart-contracts",
-              "protocol-architecture/layered-protection"
-            ]
-          },
-          {
-            "group": "Protocol Mechanism",
-            "pages": [
-              "protocol-mechanism/pnl-profile",
-              "protocol-mechanism/hedging-impermanent-loss",
-              "protocol-mechanism/replicating-options",
-              "protocol-mechanism/portfolio-allocations"
-            ]
-          },
-          {
-            "group": "Resources",
-            "pages": [
-              "resources/faq",
-              "resources/risks",
-              "resources/contract-addresses"
-            ]
-          }
+        "group": "Overview",
+        "pages": [
+          "index",
+          "overview/why-huam"
+        ]
+      },
+      {
+        "group": "Protocol Architecture",
+        "pages": [
+          "protocol-architecture/how-it-works",
+          "protocol-architecture/stablecoin",
+          "protocol-architecture/staked-stablecoin",
+          "protocol-architecture/smart-contracts",
+          "protocol-architecture/layered-protection"
+        ]
+      },
+      {
+        "group": "Protocol Mechanism",
+        "pages": [
+          "protocol-mechanism/pnl-profile",
+          "protocol-mechanism/hedging-impermanent-loss",
+          "protocol-mechanism/replicating-options",
+          "protocol-mechanism/portfolio-allocations"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          "resources/faq",
+          "resources/risks",
+          "resources/contract-addresses"
         ]
       }
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/huam_light.png",
+    "dark": "/logo/huam_dark.png"
   },
   "contextual": {
     "options": [
       "copy",
       "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+      "chatgpt"
     ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "website": "https://huam.io"
+    }
   }
 }

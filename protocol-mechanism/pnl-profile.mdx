@@ -3,8 +3,6 @@ title: "PnL Profile of a DEX LP Position"
 description: "Understanding impermanent loss and hedging fundamentals"
 ---
 
-# PnL Profile of a DEX LP Position
-
 This chapter explains how Huam hedges DEX LP positions to generate managed yield while minimizing risk and volatility from underlying assets. It assumes familiarity with Uniswap V3 style concentrated liquidity LP positions and basic options concepts.
 
 ---
@@ -15,9 +13,11 @@ Assume we enter an ETH-USDC pool on Uniswap V3 with a symmetric ±10% price rang
 
 This LP position earns trading fees from swaps that occur within our range. However, it is also exposed to **impermanent loss (IL)**—the difference in value between holding the LP position versus simply holding the original assets. As price moves away from the entry point in either direction, IL increases.
 
-![PnL Profile 1](/images/image 2.png)
+<Columns cols={2}>
+  ![PnL Profile 1](/images/image2.png)
 
-![PnL Profile 2](/images/image 3.png)
+  ![PnL Profile 2](/images/image3.png)
+</Columns>
 
 *Figure: PnL profile of LP position vs. price*
 
