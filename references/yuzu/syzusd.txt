@@ -1,0 +1,15 @@
+# Staked yzUSD (syzUSD)
+
+syzUSD is a technical wrapper, an ERC‑4626 vault token that represents staked yzUSD for composability in DeFi. Staking converts form only (yzUSD → syzUSD) and is designed to facilitate integrations and secondary‑market use. Any yield accrual to syzUSD reflects the program’s policy for yzUSD staking and underlying portfolio performance; the wrapper itself confers no separate rights beyond representing the staked position.
+
+* Yield Distribution: Yield distributed to syzUSD is **decided weekly on Wednesday** and corresponds to the week’s epoch (Wed 04:00 UTC → Wed 03:59 UTC).
+* Unstaking Window: Unstaking syzUSD back to yzUSD is a two-step process (Unstake then Claim) and completes almost instantly.
+
+# Weekly Target Yield
+
+Every Wednesday (the start of a new weekly epoch), the protocol announces a **weekly target yield** and the corresponding **dollar yield** to be distributed for that week, **calculated based on TVL at the start of the epoch.** This mechanism is designed to enhance user experience by providing a more **stable and predictable yield profile** over time. You can view the latest and historical target yields on our [Transparency](https://yuzu.accountable.capital/) dashboard.
+
+The **realized APY** for users may differ from the target depending on TVL movements during the epoch:
+
+* If TVL **decreases** during the week, the realized APY will be **higher** than the weekly target yield, as the same dollar yield is distributed over a **smaller TVL**.
+* If TVL **increases** during the week, the realized APY will be **lower** than the weekly target yield, as the same dollar yield is distributed over a **larger TVL**.

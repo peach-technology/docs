@@ -1,13 +1,32 @@
 ---
 title: "Risks"
-description: "Understanding the risks associated with using Huam"
+description: "Comprehensive disclosure of protocol and strategy risks"
 ---
 
-Reference - [Midas Risk Disclosure](https://docs.midas.app/resources/risk-disclaimer)
+**Implementation Risk**
 
-- **Third Party Risks** - Failure of Infrastructure providers, exchanges
-- **Strategy Risks**
-- **Market Risks**
-- **Execution Risks**
-- **Operational Risks**
-- **Liquidation Risks**
+Implementation risk refers to potential vulnerabilities or bugs in the protocol's smart contracts that could be exploited. Since Huam relies on interacting contracts for asset custody and strategy execution, a flaw in the logic could lead to loss of funds. We mitigate this through rigorous testing, modular architecture that isolates critical components, and multiple audits by reputable security firms.
+
+**Infrastructure Risk**
+
+The protocol's modular architecture depends on cross-chain messaging bridges to coordinate between the main network and strategy chains. Network congestion or bridge failures could delay critical messages, preventing the protocol from rebalancing or processing withdrawals. We monitor bridge health continuously and have emergency pause mechanisms to halt operations during infrastructure outages.
+
+**Strategy Risk**
+
+The protocol's core strategy involves hedging Liquidity Provider (LP) positions on DEXes. Profitability relies on the generated trading fees exceeding the "cost" of the position (modeled as the price of an option given market volatility). If volatility spikes significantly or market regimes change, the cost of maintaining the LP position—including Impermanent Loss and hedging adjustments—may exceed the fee revenue. While funding rates also affect returns, this volatility dynamic is the primary driver of strategy performance.
+
+**Market Risk**
+
+To maintain its hedge, the protocol holds short positions on perpetual exchanges. In an extreme market upswing, the value of these shorts could approach liquidation thresholds before collateral can be adjusted. While we maintain conservative collateral ratios to buffer against volatility, a rapid "short squeeze" event remains a tail risk that could lead to realized losses.
+
+**Third Party Risk**
+
+Huam deploys assets into third-party DeFi protocols (DEXs, Perp exchanges). These venues carry their own risks of exploits, governance attacks, or operational failures. If an underlying platform is compromised, Huam's deposited assets could be lost. We mitigate this by strictly whitelisting only established, highly liquid, and audited protocols for deployment.
+
+**Stablecoin Risk**
+
+The USDhm stablecoin is backed 1:1 by USDC. The protocol therefore inherits the centralized risk of the USDC issuer (Circle), including solvency and regulatory risks. A depeg or failure of USDC would directly result in a failure of USDhm. This is an accepted trade-off for the stability and liquidity that USDC provides.
+
+**Operational Risk**
+
+The protocol relies on off-chain automation bots to rebalance hedges and harvest yield. If this infrastructure goes offline due to server failures or network issues, the portfolio could drift from its target delta-neutral state. Redundant systems are in place to ensure high availability, and governance can intervene to safeguard the protocol during severe operational disruptions.

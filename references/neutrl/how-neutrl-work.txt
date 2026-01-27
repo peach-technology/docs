@@ -1,0 +1,35 @@
+
+How Neutrl Works
+Typical Neutrl user flow: 1) Deposit → mint nUSD 2) Stake → earn sNUSD yield
+3) Lock → boost rewards.
+
+Typical Neutrl user flow: 1) Deposit → mint nUSD 2) Stake → earn sNUSD yield 3) Lock → boost rewards.
+
+
+NUSD Issuance & Redemption
+Deposit collateral
+Eligible assets: USDC, USDT, USDe
+Any time you deposit one of these tokens to the Router Contract, the system settles your deposit onchain.
+Receive the receipt token
+The router mints NUSD 1 : 1 against your collateral and returns it to your wallet in the same transaction.
+Institutional custody & deployment
+Collateral routes to segregated vaults at institutional custodians (Fireblocks, Copper, Ceffu etc.).
+From there it is deployed into delta-neutral, duration-matched strategies that power the protocol's yield engine.
+Unmatched liquidity
+NUSD is an ERC20, with plug-and-play across CEX margin accounts, DeFi money-markets and onchain primitives.
+Fast redemptions plus full backing make it “blue-chip” collateral wherever dollars are needed.
+Staking NUSD → sNUSD
+Stake
+Stake your NUSD into the Staking Contract to convert it into sNUSD.
+Earn the Neutrl rate
+All protocol income - basis arbitrage, OTC carry, onchain reference yield pools - flows to the yield pool.
+Every epoch the pool re-indexes sNUSD balances upward
+Unstake at any time and you receive NUSD + accrued yield, subject to the 10-day cooldown period.
+
+Locking NUSD / sNUSD / LP tokens
+Choose a lock tenor
+Lock assets for 6 to 12 months inside the Locking Contract.
+Boost your rewards
+Longer locks earn higher points → a larger slice of future emissions & incentive campaigns.
+Future-proof distribution
+The protocol may evolve to a weighted-average maturity model, seamlessly routing more yield toward longer-dated lockers to keep duration perfectly balanced.

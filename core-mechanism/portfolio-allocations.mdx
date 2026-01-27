@@ -1,0 +1,59 @@
+---
+title: "Portfolio Allocation"
+description: "How Huam selects pools, evaluates profitability, and allocates capital"
+---
+
+Huam continuously scans pools across multiple DEXs and chains to identify opportunities where fee income exceeds hedging costs. This section describes how the protocol evaluates, selects, and sizes positions.
+
+## Evaluating Opportunities: Fees vs. Option Premium
+
+At its heart, pool evaluation is a comparison between two quantities:
+
+1. **Expected fee income** from providing liquidity
+2. **Option premium** required to hedge impermanent loss
+
+As established in previous sections, a delta-neutral LP position behaves like a short straddle. To neutralize this exposure, we need to acquire the equivalent of a long straddle. Whether we buy actual options or replicate them synthetically through perpetual rebalancing, there is a cost—the **option premium**.
+
+The profitability question becomes straightforward: **Do the fees earned from the pool exceed the premium required to hedge it?**
+
+If a pool generates 30% annualized fees, but the straddle premium for that asset is 40% annualized, the position loses money. Conversely, if fees are 30% and the premium is only 15%, the position captures a 15% spread.
+
+Option premium is driven primarily by **volatility**. The more volatile an asset, the more valuable the option protection, and thus the higher the premium.
+
+This creates an important dynamic: high-fee pools often exist precisely because the underlying assets are volatile—traders pay more fees because there's more price action. But that same volatility makes the hedge expensive.
+
+The protocol must estimate expected volatility accurately to price the hedge correctly. We use models that capture volatility dynamics across multiple time horizons—short-term swings, medium-term trends, and longer-term regime shifts. Small estimation errors compound into large differences in premium calculations.
+
+For each candidate pool, we project fee generation based on:
+
+- **Historical trading volume**: Recent activity levels and trends
+- **Liquidity depth**: How much capital is competing for fees
+
+Volume and liquidity fluctuate constantly. Rather than relying on point estimates, we use statistical models that account for mean reversion and recent momentum to produce robust fee projections.
+
+## Comparing Opportunities
+
+With fee income and option premium estimates in hand, we calculate expected net return for each pool:
+
+$$
+\text{Expected Return} = \text{Fee APR} + \text{Funding Income} - \text{Option Premium}
+$$
+
+This enables consistent comparison across pools with vastly different characteristics:
+
+| Pool | Fee APR | Volatility | Option Premium | Net Expected Return |
+|------|---------|------------|----------------|---------------------|
+| Pool A | 50% | 80% | 45% | 5% |
+| Pool B | 25% | 30% | 12% | 13% |
+
+Pool A looks attractive on a fee basis, but its high volatility means an expensive hedge. Pool B, despite lower gross fees, delivers better net returns because the option premium is much cheaper relative to the fees earned.
+
+This framework prevents chasing high-fee pools that are expensive to hedge—a common mistake when evaluating LP opportunities without accounting for IL risk.
+
+## Position Selection and Risk Management
+
+Not every positive-return pool receives capital. The protocol ranks candidates by net expected return and selects the top opportunities, scaling with total AUM.
+
+Beyond return optimization, we enforce diversification limits to ensure no single point of failure can materially impair the portfolio. A smart contract exploit, token depeg, or chain outage should never threaten the whole portfolio.
+
+The portfolio is continuously monitored. Fee generation, volatility conditions, and range proximity are tracked in real time. When a position's expected return deteriorates—whether from declining fees or rising hedge costs—it is rebalanced or exited. Capital flows to the highest-conviction opportunities where the fees-exceed-premium spread remains attractive.

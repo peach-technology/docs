@@ -1,0 +1,9 @@
+# Yuzu Money
+
+## What is Yuzu Money?
+
+Yuzu Money wraps some of the highest yielding DeFi strategies into a single **overcollateralized stablecoin (yzUSD).**
+
+DeFi offers high yields and composability, but it’s complex and challenging. It has a steep learning curve and an ever-evolving ecosystem requiring constant research with persistent risks. In short, **DeFi in its existing state is not for everyone**.
+
+Yuzu Money aims to bring the best of DeFi to everyone by **wrapping curated high yield DeFi strategies in a single stablecoin (yzUSD)** layered with **institutional-grade risk mitigation.** With Yuzu Money, everyone can access DeFi’s high yields with all of its complexities abstracted away.

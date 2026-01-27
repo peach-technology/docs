@@ -1,0 +1,71 @@
+---
+title: "Hedging Impermanent Loss"
+description: "Using options to neutralize the nonlinear risk of LP positions"
+---
+
+The previous section established that impermanent loss has a convex, nonlinear profile that linear instruments cannot fully hedge. This section explains how options solve this problem.
+
+## Why Options?
+
+Options are financial instruments with built-in convexity. A call option gains value at an accelerating rate as price rises; a put option does the same as price falls. This curved payoff profile is exactly what we need to offset the curved loss profile of IL.
+
+For a symmetric LP range, a **straddle**—buying both an at-the-money put and call—creates a payoff that mirrors impermanent loss. As price moves away from the strike in either direction, the straddle gains value, offsetting the IL incurred by the LP position.
+
+## The Complete Hedge
+
+Huam's hedging approach combines three components:
+
+1. **LP Position**: Earns trading fees, exposed to IL
+2. **Short Perpetual**: Removes directional (linear) exposure to price
+3. **Straddle**: Offsets the convex IL profile
+
+When combined, these three elements produce a portfolio with a flattened PnL across a wide range of prices. The position captures fee revenue while neutralizing both directional exposure and impermanent loss.
+
+Unlike a portfolio with only a short hedge, this fully hedged position does not suffer losses when price moves toward the range boundaries. The straddle payoff compensates for the IL that the linear short cannot cover.
+
+## Selecting Option Maturity
+
+Options have expiration dates, which introduces a question: how long should the option last?
+
+The answer depends on how long the LP position is expected to remain in range. If price exits the range, the LP stops earning fees and must be repositioned.
+
+Assuming price follows a random walk, we can estimate the expected time to reach a boundary. For a return level $r$ (the distance to the range boundary), the expected time is:
+
+$$
+T = \frac{[\ln(1+r)]^2}{\sigma^2}
+$$
+
+where $\sigma$ is annualized volatility.
+
+**Example**: ETH volatility = 60%, price range = ±20%
+
+$$
+T = \frac{[\ln(1.2)]^2}{0.6^2} \approx 0.092 \text{ years} \approx 34 \text{ days}
+$$
+
+We match the option tenor to this expected duration. Tighter ranges mean shorter-dated options; wider ranges allow longer tenors.
+
+## The Profitability Condition
+
+With hedging costs quantified, profitability becomes a straightforward comparison:
+
+$$
+\text{Fee APR} + \text{Funding Income} > \text{Hedge Cost APR}
+$$
+
+If fee revenue plus any funding payments from the short perpetual exceed the cost of the options hedge, the position is profitable.
+
+This framework shifts the evaluation from "which pool has the highest APY?" to "which pool has the best risk-adjusted return after hedging costs?"
+
+## What Hedging Achieves
+
+Adding options doesn't magically create yield. If a pool's fee revenue is insufficient relative to its volatility, hedging simply reshapes risk without improving economics. The option premium reflects the true cost of the volatility exposure.
+
+However, the framework provides two significant benefits:
+
+| Benefit | Description |
+|---------|-------------|
+| **Variance Reduction** | Returns become consistent across different price paths, rather than highly profitable in some scenarios and deeply unprofitable in others |
+| **Rigorous Evaluation** | Options pricing provides a sound theoretical basis for comparing opportunities, replacing naive APY comparisons with true risk-adjusted analysis |
+
+The next section explains how Huam implements this hedging approach when liquid options markets don't exist.

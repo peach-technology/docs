@@ -1,0 +1,17 @@
+# Core Features & Value Proposition
+
+**High Yield. Protected. Transparent.**
+
+Yuzu Money’s objective is to **deliver exposure to some of DeFi’s best yields to everyone with risk mitigation layers and observable backing.**
+
+At the core is [yzUSD](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/yuzu-stablecoin-yzusd), an overcollateralized stablecoin backed by curated on-chain strategies in a single tokenized form.<br>
+
+* **Risk Tranching** ([yzPP](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/yuzu-protection-pool-yzpp)): A first-loss pool earns higher target yield for assuming higher risk.<br>
+* **Semi-Automated Exploit Response** ([Sentinel](https://yuzu-money.gitbook.io/yuzu-money/security-infrastructure/hypernative-sentinel) powered by Hypernative): Real-time on chain exploit monitoring with semi-automated response.<br>
+* **Smart Contract Insurance** ([Nexus Mutual](https://nexusmutual.io/)): Protocol level cover for certain exploit classes.
+
+These elements combine to present **curated yield** access plus **institutional style risk features** in a single stablecoin experience.
+
+## Core Value Proposition
+
+<table data-full-width="false"><thead><tr><th align="center">Problem</th><th align="center">Yuzu Solution</th></tr></thead><tbody><tr><td align="center"><strong>High Yield</strong></td><td align="center">High yield on-chain DeFi strategies </td></tr><tr><td align="center"> <strong>Multi-Layer Protection</strong></td><td align="center">First-loss protection pool (yzPP) + Reserve Fund + Nexus Mutual smart contract insurance  + Sentinel semi-automated exploit response</td></tr><tr><td align="center"><strong>Full Transparency</strong></td><td align="center">Reserves, collateral ratios and risk metrics verifiable in near real-time via <a href="../transparency/accountable">Accountable</a>.</td></tr><tr><td align="center"><strong>Always Overcollateralized</strong></td><td align="center">Every yzUSD is backed by >$1 of on-chain assets with additional collateralization provided by yzPP.</td></tr></tbody></table>

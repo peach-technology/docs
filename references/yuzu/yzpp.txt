@@ -1,0 +1,82 @@
+# Yuzu Protection Pool (yzPP)
+
+yzPP is a first-loss tranche inspired by Resolv’s RLP. Depositors in yzPP accept first loss risk on the underlying strategies in exchange for higher target yield, funded partly by the Reserve Fund.
+
+* Minting: Deposit USDT0 to mint yzPP (Plasma).
+* Yield Composition: (a) base yield tracking syzUSD; (b) an additional protocol funded yield budget sized by policy.
+* $$Collateralization\ Ratio = \frac{ yzUSD\ Supply \  +\ yzPP \ TVL}{yzUSD\ Supply}$$
+* Exit Condition: redeemable provided the yzUSD [collateralization ratio](https://yuzu.accountable.capital/) remains > 110%.
+* Program Cadence: The additional yield budget is set daily at 04:00 UTC (covering daily 04:00 UTC to 03:59 UTC).
+* In the event of a loss incurred by the Collateral Pool, minting and redemption of yzPP — including any redemptions currently in process — will be paused for an initial period of 7 days. This pause may be extended to allow for a full assessment of the situation.
+
+<sub>*Access & Eligibility (Accredited/Qualified Only)*</sub>
+
+<sub>yzPP participation is restricted to Accredited, Qualified, Institutional, or Sophisticated Investors (“Eligible Investors”) based on their country of residence or incorporation. Access is subject to completion of KYC/KYB, sanctions screening, AML/CFT checks, and Source‑of‑Funds/Source‑of‑Wealth verification to the program’s reasonable satisfaction.</sub>
+
+<sub>As a condition of access, each participant must (i) provide reasonable proof of Eligible‑Investor status and (ii) execute a declaration stating that they are and wish to be treated as an Accredited/Qualified/Institutional/Sophisticated investor (as applicable) under the laws and regulations of their jurisdiction. Yuzu Money may decline or revoke access, or require updated evidence, at any time to remain compliant. Retail users are not eligible to mint, subscribe, or redeem yzPP.</sub>
+
+The yzPP Reward Mechanism and First-Loss Mechanism are explained below:
+
+[yzpp-reward-mechanism-risk-premiums](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/yuzu-protection-pool-yzpp/yzpp-reward-mechanism-risk-premiums "mention")
+
+[yzpp-first-loss-mechanism](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/yuzu-protection-pool-yzpp/yzpp-first-loss-mechanism "mention")
+
+# yzPP Reward Mechanism (Risk Premiums)
+
+* **yzPP’s APY** is composed of two components: i) a base yield equivalent to that of **syzUSD**, ii) and an **additional yield budget** allocated by the protocol specifically for yzPP.
+* The budget for yzPP's additional yield is set daily by the protocol (see below on Risk Premiums).
+* yzPP yield is estimated to be >200% that of syzUSD yield based on a 110% collateral ratio.
+
+### Risks Premiums
+
+As part of our commitment to sustainable protocol growth and structural integrity, Yuzu Money is formalizing the risk-reward framework for yzPP, this is to ensure that yzPP depositors—who act as the protocol's first loss backstop are consistently and fairly compensated for the capital risk they assume in protecting the broader yzUSD ecosystem.&#x20;
+
+The protocol has decided to fix risk premiums that redirects yield surplus to yzPP at 15%. To put simply, this **15% risk premium** is a additional factor applied on the base yield equivalent that is currently being paid out to **syzUSD token holders**. The formula for tabulating estimated yzPP yield is as shown below:
+
+$$
+yzPP \ yield\ (APY) = \frac{syzUSD\ yield \* (1 + Risk\ Premiums)}  { yzPP\ tvl}
+$$
+
+# yzPP First-Loss Mechanism
+
+yzPP provides a layer of protection to the [yzUSD](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/yuzu-stablecoin-yzusd) [Collateral Pool](https://yuzu-money.gitbook.io/yuzu-money/yuzu-stablecoin/collateral-pool) via the first-loss mechanism.
+
+<figure><img src="https://410482627-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FyHmskHgMemSDbpsRsSRm%2Fuploads%2FP3QAvvsyRYTSk2wjFbI3%2Fimage_2025-09-09_11-35-23.png?alt=media&#x26;token=47e9122e-6712-499f-a217-c9e58e770f0a" alt=""><figcaption></figcaption></figure>
+
+### Core Concept
+
+* **Collateral Pool**: $yzUSD is backed by a pool of assets.
+* **Collateral Ratio**: Measures total collateral value relative to $yzUSD supply.
+  * Example: A pool worth **$110** backing **100 $yzUSD** gives a **110% ratio**.
+  * Ratios above 100% provide a buffer that helps support the 1:1 peg to USD.
+
+***
+
+### Risk Without Protection
+
+Consider a $5 loss in the Collateral Pool:
+
+* Pool drops to **$95**.
+* Ratio falls to **95%**, undercollateralized.
+* Each $yzUSD is now only backed by **$0.95**.
+* This could impact redemptions and the peg.
+
+In this scenario, losses flow directly to $yzUSD holders.
+
+***
+
+### How yzPP Absorbs Losses
+
+The yzPP acts as a **first-loss buffer**:
+
+* A separate pool where participants deposit assets.
+* yzPP depositors earn higher rewards in exchange for taking on first-loss risk.
+
+Using the same $5 loss example:
+
+* The **$5 impact is absorbed by yzPP** (e.g., yzPP falls from $10 to $5).
+* The **Collateral Pool remains at $105**.
+* The ratio stays above 100% (105%), ensuring $yzUSD is still fully backed.
+* $yzUSD redemptions continue at **1:1 with USD**.
+
+<table><thead><tr><th width="142.359375">Moment</th><th width="137">Collateral Pool</th><th>yzPP ($ total)</th><th width="110.92578125">yzUSD supply</th><th width="123.25390625">Collateral Ratio</th><th>What happens</th></tr></thead><tbody><tr><td><strong>Start</strong></td><td><strong>$110</strong></td><td><strong>$10</strong></td><td><strong>100</strong></td><td><strong>110%</strong></td><td>System over-collateralised at 110 %</td></tr><tr><td><strong>After $5 loss + first-loss</strong></td><td><strong>$105</strong></td><td><strong>$5</strong></td><td>100</td><td>105%</td><td>yzPP is devalued from $10 to $5 to plug the $5 loss</td></tr><tr><td><em>Without yzPP first-loss mechanism</em></td><td>$95</td><td>-</td><td>100</td><td>95%</td><td>yzUSD no longer fully backed, all yzUSD holders take the loss</td></tr></tbody></table>

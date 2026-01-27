@@ -3,13 +3,23 @@ title: "What is Huam"
 description: "Introduction to Huam protocol and its core components"
 ---
 
-Huam turns DEX liquidity provision into a simple, yield-bearing stablecoin.
+Huam is a synthetic dollar protocol that captures DEX liquidity provision yield through hedged, delta-neutral strategies—delivering sustainable returns from real onchain trading activity.
 
-DEX LP positions offer some of the highest yields in DeFi, but capturing them is hard. It requires constant monitoring, active rebalancing, and sophisticated hedging to manage impermanent loss.
+## Key Properties
 
-Huam does this for you. The protocol continuously scans pools across multiple DEXs and networks, selects the best opportunities, and manages fully hedged positions. The yield flows back to you, with all the complexity abstracted away.
+| Attribute | Description |
+| :---: | :--- |
+| **Profitability** | Access to DEX trading fees—one of the highest sustainable yield sources in DeFi, less prone to compression than funding rates |
+| **Autonomousity** | No active position management required; protocol handles pool selection, rebalancing, and cross-chain deployment |
+| **Risk Management** | Derivative hedges neutralize impermanent loss, targeting delta-neutral returns from fee income | 
+| **Transparency** | All LP positions, hedge ratios, and P&L are verifiable onchain in real time |
 
 ## Core Components
 
-- **USDhm**: A synthetic dollar, mintable and redeemable 1:1 with USDC.
-- **sUSDhm**: A yield-bearing ERC-4626 token representing staked USDhm.
+The protocol operates through a dual-token system that cleanly separates stability from yield:
+
+- **USDhm** is Huam's synthetic dollar—fully backed, mintable and redeemable 1:1 with USDC. Holding USDhm alone provides zero exposure to strategy performance. The peg holds regardless of whether the yield strategy gains or loses.
+
+- **sUSDhm** is the yield-bearing token. Built on the ERC-4626 vault standard, sUSDhm appreciates against USDhm as yield accrues. Stake USDhm to receive sUSDhm; unstake to redeem for more USDhm than you deposited. All positions, hedges, and P&L are verifiable onchain.
+
+This architecture ensures that users who want stability get stability, and users who want yield get yield—with no confusion between the two.

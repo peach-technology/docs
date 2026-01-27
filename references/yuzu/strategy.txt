@@ -1,0 +1,67 @@
+# Underlying Strategies
+
+**Principles & Mandate**
+
+Yuzu Money’s strategies are:
+
+* **100% on-chain and verifiable** via [Accountable](https://yuzu.accountable.capital/)
+* **Bound by the** [**Asset Whitelist**](https://app.yuzu.money/asset-whitelist)&#x20;
+* **Risk-first** – Prioritizing capital preservation over yield
+* Backed by a layered protection stack (yzPP first-loss tranche, Nexus Mutual insurance where applicable, and the Reserve Fund)
+
+This page explains the main *strategy families* that backing assets are deployed into. For a live view of exposures, refer to the Strategy Breakdown section of our [Transparency](https://yuzu.accountable.capital/) dashboard.
+
+***
+
+**Strategy Buckets**
+
+At a high level, backing strategies include but are not limited to:
+
+* DeFi liquidity provision
+* Leveraged loops&#x20;
+* Private TVL programs
+* Pre-deposit vaults
+* Airdrop / points farming
+
+The strategies are broadly categorized into the following buckets.
+
+***
+
+**1. Leverage Loops**&#x20;
+
+> **Leveraged loops** on correlated assets, particularly where oracles are robust (e.g. hard-coded bands, long TWAPs, or fundamental backing).
+>
+> Examples include:
+>
+> * **USDe / stables loops**
+> * **syrupUSDC /** **stables loops**
+>
+> The goal is to earn a spread between supply and borrow yields (plus incentives) while staying within LTV and liquidation thresholds.
+
+***
+
+**2. Private TVL Deals**
+
+> Yuzu Money partners directly with protocols in **private TVL programs**.
+>
+> * These deals often come with improved economics (higher base yield, upside sharing, or bespoke incentives) in exchange for committed TVL.
+> * All such deals are backed by whitelisted collateral and venues and must pass the same risk assessment as public strategies.
+
+***
+
+**3. Pre-Deposit Vaults**
+
+> Ecosystems and/or protocols may offer **pre-deposit programs** where yield is boosted for early committed capital before a strategy is fully live.
+>
+> * Yuzu Money may allocate to such pre-deposit vaults when the underlying strategy, protocol, and asset risks have been reviewed and whitelisted.
+
+***
+
+**4. Airdrop / Points & Incentive Farming**
+
+> Backing assets may be deployed into strategies that earn **airdrop / points / incentive rewards** from emerging protocols.
+>
+> * These strategies must still be **fundamentally sound** on an asset backing basis; with their points / airdrops / incentives treated with conservative estimates.
+> * Any realized tokens or incentives from such programs accrue back to the protocol’s economic engine and Reserve Fund.
+
+***

@@ -1,0 +1,54 @@
+# Ethena Overview
+
+{% hint style="info" %}
+Ethena's USDe is **not** the same as a fiat stablecoin like USDC or USDT. USDe is a synthetic dollar, backed with crypto assets and corresponding short futures positions.
+
+This means that the risks implicated by interacting with USDe are inherently different.&#x20;
+
+Please refer to our extensive [Risk](https://docs.ethena.fi/solution-overview/risks)[s](https://docs.ethena.fi/solution-overview/risks) section for more information.
+{% endhint %}
+
+## Overview
+
+Ethena is a synthetic dollar protocol built on Ethereum that provides a crypto-native solution for money, *USDe*, alongside a globally accessible dollar savings asset, *sUSDe*.\
+\
+Ethena's synthetic dollar, *USDe*, provides the crypto-native, scalable solution for money achieved by delta-hedging Bitcoin, Ethereum and other governance-approved spot assets using perpetual and deliverable futures contracts, as well as holding liquid stables such as USDC and USDT.&#x20;
+
+*USDe* is fully-backed (subject to the discussion in the Risks section regarding events potentially resulting in loss of backing) and free to compose throughout CeFi & DeFi.
+
+*USDe* peg stability is supported through the use of delta hedging derivatives positions against  protocol-held backing assets, maintaining a relatively stable value with reference to the value spot crypto assets as well as futures positions.&#x20;
+
+The inclusion of liquid stables (such as USDC and USDT) enhances the efficiency of the delta hedging process, while also potentially acting as a safeguard in bear markets when funding rates and futures basis are suboptimal. Liquid stables may earn rewards depending on where they are held, potentially enhancing overall protocol revenue.
+
+{% hint style="info" %}
+Website: <https://ethena.fi/>
+
+Telegram: <https://t.me/ethena_labs>
+
+Discord: [https://discord.gg/ethena ](https://discord.gg/ethena)
+
+Twitter: <https://twitter.com/ethena_labs>
+
+LinkedIn: <https://www.linkedin.com/company/ethena-labs/>
+{% endhint %}
+
+{% hint style="info" %}
+The acquisition of sUSDe is not offered to persons with their habitual residence or registered office in the European Union or the European Economic Area.
+{% endhint %}
+
+## Quick Links
+
+{% embed url="<https://www.notion.so/ethena/Ethena-FAQs-3ccc1437e13343f8b74c0d005e4f5128?pvs=4>" %}
+
+{% embed url="<https://www.notion.so/ethena/Ethena-Chartbook-c35c316346ee4c7e97aff49a9eadd87e?pvs=4>" %}
+
+{% content-ref url="video-guides/how-to-buy-usde" %}
+[how-to-buy-usde](https://docs.ethena.fi/video-guides/how-to-buy-usde)
+{% endcontent-ref %}
+
+Users are currently able to:
+
+* **Permissionless Acquire** *USDe.* Access external AMM pools to acquire or dispose of *USDe* with assets such as USDT or USDC.
+* **Direct Mint** *USDe*. Transfer accepted reserve assets and receive *USDe, subject to clearing KYC/KYB checks exclusively for approved market making counterparties*. See Supplemental USDe Terms and Conditions.
+* **Direct Redeem** *USDe*. Burn *USDe* & receive backing asset&#x73;*, subject to clearing KYC/KYB checks exclusively for approved market making counterparties*. See Supplemental USDe Terms and Conditions.
+* **Stake & Unstake** *USDe*. Receive rewards from protocol revenue. *Available exclusively for users in permitted jurisdictions.*

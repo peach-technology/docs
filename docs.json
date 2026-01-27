@@ -23,22 +23,21 @@
         ]
       },
       {
-        "group": "Protocol Architecture",
+        "group": "Protocol Design",
         "pages": [
-          "protocol-architecture/how-it-works",
-          "protocol-architecture/stablecoin",
-          "protocol-architecture/staked-stablecoin",
-          "protocol-architecture/smart-contracts",
-          "protocol-architecture/layered-protection"
+          "protocol-design/how-it-works",
+          "protocol-design/stablecoin",
+          "protocol-design/staked-stablecoin",
+          "protocol-design/smart-contracts",
+          "protocol-design/protection-layers"
         ]
       },
       {
-        "group": "Protocol Mechanism",
+        "group": "Core Mechanism",
         "pages": [
-          "protocol-mechanism/pnl-profile",
-          "protocol-mechanism/hedging-impermanent-loss",
-          "protocol-mechanism/replicating-options",
-          "protocol-mechanism/portfolio-allocations"
+          "core-mechanism/pnl-profile",
+          "core-mechanism/hedging-strategy",
+          "core-mechanism/portfolio-allocations"
         ]
       },
       {

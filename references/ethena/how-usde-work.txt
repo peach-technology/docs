@@ -1,0 +1,41 @@
+# How USDe Works
+
+<figure><img src="https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2FNrCX8EGXgNHsg63g8So3%2Fimage.png?alt=media&#x26;token=bcb1ddf1-d574-4ead-9550-14a9e09b83f6" alt=""><figcaption></figcaption></figure>
+
+### **Example**
+
+1. A whitelisted user provides \~$100 of *USDT* and receives \~100 newly-minted *USDe* atomically in return less the gas & execution costs to execute the hedge.
+2. Slippage & execution fees are included in the price when **minting** & **redeeming**. Ethena earns no profit from the **minting** or **redeeming of** *USDe*.
+3. The protocol opens a corresponding short perpetual position for the approximate same notional dollar value on a derivatives exchange.
+4. The backing assets are transferred directly to an "Off Exchange Settlement" solution. Backing assets remain onchain and custodied by off exchange service providers to minimize counterparty risk.&#x20;
+5. Ethena delegates, but never transfers custody of, backing assets to derivatives exchanges to margin the short perpetual hedging positions.
+
+### **Delta Neutrality**
+
+USDe derives its relative peg stability from executing automated and programmatic delta-neutral hedges with respect to the underlying backing assets.&#x20;
+
+Hedging the price change risk of the backing asset in the same size minimizes fluctuations in the backing asset price as the change in value of the backing assets asset is generally offset 1:1 by the change in value of the hedge.
+
+Since the backing assets can be perfectly hedged with a short position of equivalent notional, USDe only requires 1:1 "collateralization."
+
+See [Delta Neutrality](https://docs.ethena.fi/solution-overview/usde-overview/delta-neutral-stability) for more details.
+
+### Off Exchange Custody
+
+Assets backing USDe remain in "Off-Exchange Settlement" institutional grade solutions at all times. The only time collateral flows between custody and exchange is to settle funding or realized P\&L.
+
+This enables Ethena to delegate/undelegate backing assets to centralized exchanges without being exposed to exchange-specific idiosyncratic risk.
+
+See [Off-Exchange Custody](https://docs.ethena.fi/backing-custody-and-security/overview) for more details.
+
+### Protocol Rewards
+
+sUSDe is the reward-accruing version of USDe. In order to receive rewards, users must stake their USDe to receive sUSDe.
+
+Ethena earns protocol rewards from three different [sources](https://docs.ethena.fi/solution-overview/protocol-revenue-explanation) today, with the main source originating from Ethena's short perpetual futures positions that collect funding rates on exchanges.
+
+In 2024, BTC funding rates averaged 11%, while ETH funding rates averaged 12.6%.&#x20;
+
+sUSDe APY averaged 19% in 2024.
+
+See [Historical Examples](https://docs.ethena.fi/solution-overview/protocol-revenue-explanation/historical-examples) for a detailed breakdown of funding rate historical data.

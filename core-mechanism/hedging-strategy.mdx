@@ -1,0 +1,69 @@
+---
+title: "Hedging Strategy"
+description: "How Huam neutralizes impermanent loss using perpetuals and dynamic rebalancing"
+---
+
+The previous section established that a delta-neutral LP position behaves like a short straddle—it loses value when price moves in either direction. This section explains how Huam offsets that loss by manufacturing the opposite exposure.
+
+Huam's hedging strategy works in two layers:
+
+1. **Static hedge**: A short perpetual removes directional exposure, making the position delta-neutral at inception.
+
+2. **Dynamic hedge**: Continuous rebalancing of the perpetual position replicates a long straddle, offsetting the concave loss profile of impermanent loss.
+
+The result is a position that captures DEX trading fees while neutralizing both directional risk and the nonlinear risk of IL. The cost of this protection is the cumulative expense of rebalancing—a synthetic premium that must be covered by fee income for the strategy to be profitable.
+
+## The Static Hedge: Removing Delta
+
+Before addressing the curved loss profile, we first remove directional exposure.
+
+At the moment of entering an LP position, the protocol holds some amount of the volatile asset (e.g., ETH). If price rises 10%, that ETH holding gains 10%—this is unwanted directional exposure.
+
+To neutralize this, the protocol opens a **short perpetual position** sized to match the ETH balance in the LP. If the LP holds 10 ETH, the protocol shorts 10 ETH worth of perpetuals.
+
+This static hedge removes the "first-order" price sensitivity. But it does nothing about the curved loss profile—the impermanent loss that accumulates as price drifts away from entry. That requires a different approach.
+
+## The Dynamic Hedge: Manufacturing Convexity
+
+If the LP behaves like a short straddle, the natural hedge is a **long straddle**—a position that gains value when price moves in either direction. Combining these two should produce a flat PnL profile: the LP's losses are offset by the hedge's gains.
+
+The challenge is that we can't simply buy a straddle. Crypto options markets are thin, expensive, and only exist for BTC and ETH. For the vast majority of token pairs—ARB/USDC, CRV/WETH, and countless others—there is no options market at all.
+
+Instead of buying an option, we can replicate the payoff by continuously trading the underlying asset. Any option payoff can be replicated by continuously trading the underlying asset.
+
+A straddle gains value when price moves because its "delta"—sensitivity to price—changes as price moves. At the entry price, a straddle has near-zero delta. As price rises, the call becomes more valuable and the straddle becomes increasingly long. As price falls, the put dominates and the straddle becomes increasingly short.
+
+| Price Movement | What Happens to LP | Required Hedge Adjustment |
+|----------------|-------------------|---------------------------|
+| Price rises | LP sells ETH into the rally (becomes "shorter") | Buy back some of the short perpetual |
+| Price falls | LP accumulates ETH on the way down (becomes "longer") | Increase the short perpetual position |
+
+Over time, the cumulative effect of these adjustments creates a synthetic long straddle. The LP's losses from impermanent loss are offset by the gains from the dynamic hedge.
+
+## The Cost of the Synthetic Hedge
+
+Dynamic replication isn't free. Each rebalancing trade incurs costs:
+
+- **Trading fees** on the perpetual exchange
+- **Slippage** from market impact
+- **Funding payments** (which can be positive or negative depending on market conditions)
+
+The total cost of these adjustments represents the "synthetic premium" paid for the hedge—analogous to the premium you'd pay to buy an actual straddle.
+
+This cost depends heavily on **realized volatility**. More price movement means more rebalancing, which means higher costs. If the market chops back and forth frequently, the hedge becomes expensive. If price trends smoothly or stays flat, the hedge is cheap.
+
+For BTC and ETH where liquid options markets exist, buying actual options can sometimes be more efficient than dynamic replication—there's no path dependency and the payoff is guaranteed. Huam evaluates both approaches and uses whichever is more cost-effective.
+
+## When the Strategy is Profitable
+
+The protocol's economics reduce to a simple comparison:
+
+**Is the yield from LP fees greater than the cost of the hedge?**
+
+| Income Sources | Cost Sources |
+|----------------|--------------|
+| DEX trading fees | Rebalancing transaction costs |
+| Perpetual funding (when positive) | Slippage on rebalances |
+| | Perpetual funding (when negative) |
+
+A position is viable when total income exceeds total cost. The protocol continuously monitors this balance and exits positions that become uneconomic.

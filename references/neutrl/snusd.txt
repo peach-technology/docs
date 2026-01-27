@@ -1,0 +1,33 @@
+sNUSD
+Earning Yield
+Neutrl distributes generated yield exclusively to sNUSD holders. Users stake NUSD tokens through the staking contract to receive sNUSD, which represents their proportional share of the yield-bearing vault. The sNUSD token automatically appreciates in value as yield accrues, enabling passive yield earning without requiring any manual actions from users.
+
+Unstaking process
+Upon unstaking, sNUSD tokens are burned and users receive their proportional share of NUSD based on the current exchange rate. The protocol enforces a 10-day cooldown period before withdrawals can be executed.
+
+The cooldown period ensures that there is enough time to unwind the collateral to meet the redemption
+
+Yield Accrual Mechanism
+Staking NUSD
+Users deposit NUSD into the staking contract
+The contract mints sNUSD based on the current sNUSD
+exchange rate
+Initial exchange rate: 1 sNUSD = 1 NUSD
+The exchange rate increases over time as yield accumulates
+Yield Distribution
+Protocol generates yield through market-neutral strategies and revenue-generating activities
+Yield continuously flows into the staking contract, increasing total NUSD reserves
+Each sNUSD token appreciates proportionally as the vault grows
+Passive Growth
+Yield accrual requires no user intervention
+Returns are automatically reflected in the increasing sNUSD redemption value
+Calculation & Example
+
+sNUSD:NUSD ratio = total sNUSD supply / (total NUSD staked + total protocol revenue deposited in NUSD terms)
+Time period	sNUSD supply	Protocol revenue (NUSD)	sNUSD : NUSD ratio	sNUSD Received for 1 NUSD Staked	NUSD Received for 1 sNUSD Burned
+Day 0	5,000,000	0	1	1	1
+Day 90	5,000,000	250,000	1.05	0.95	1.05
+Day 180	5,000,000	500,000	1.1	0.9	1.1
+Day 270	5,000,000	750,000	1.15	0.87	1.15
+Day 365	5,000,000	1,000,000	1.2	0.833	1.2
+Last updated: 12/14/25, 9:48 AM

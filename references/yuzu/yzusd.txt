@@ -1,0 +1,23 @@
+# Yuzu Stablecoin (yzUSD)
+
+**yzUSD** is intended to be an overcollateralized, stable value, asset referenced token targeting US$1.
+
+Key characteristics:
+
+* **Synthetic Dollar Intent:** yzUSD targets stability at $1; in base form, it does not itself bear yield.
+* **Staking Pathway:** Holders may stake yzUSD to receive syzUSD, a liquid, yield accruing ERC-4626 vault token that enables further DeFi composability.
+* **On-Chain Proof**: Collateral is always on-chain; a Proof of Reserves dashboard allows users to verify that every yzUSD is backed by > US$1 in eligible on chain assets.
+* **Mint/Redeem (Gated):** Subject to eligibility and KYC/AML/KYB/SoF/SoW screening, only Eligible Investors (defined below) may mint or redeem yzUSD for USDC at 1:1, honoring program rules and risk limits.
+
+*Mint/Redeem Eligibility (Accredited/Qualified Only)*
+
+Primary minting and redeeming of yzUSD are available only to Eligible Investors, i.e. Accredited, *Qualified, Institutional, or Sophisticated Investors (as recognized in the user’s country of residence or incorporation). Access is conditional on completion of:*
+
+* KYC/KYB, sanctions screening, AML/CFT checks; and Source‑of‑Funds/Source‑of‑Wealth verification;
+* plus reasonable proof of Eligible Investor status and a signed declaration stating the user is and wishes to be treated as such under applicable law.
+
+Yuzu Money may deny, pause, or revoke mint/redeem access to remain compliant.
+
+*Secondary‑Market Trading (Open)*
+
+Once yzUSD is validly minted into circulation, it is intended to function as a pure stablecoin that may be traded by anyone in relevant secondary markets (e.g., CEXs/DEXs) that choose to list or support it, subject to those venues’ rules and applicable law. Yuzu does not operate these venues.

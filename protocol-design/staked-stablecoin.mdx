@@ -1,0 +1,49 @@
+---
+title: "Staked Huam USD"
+description: "Huam's yield-bearing token - staking, unstaking, and reward distribution"
+---
+
+Staked Huam USD (sUSDhm) is Huam's yield-bearing token. Users stake USDhm to receive sUSDhm, which automatically appreciates as protocol revenue accrues. No claiming or compounding required—yield is reflected in the increasing sUSDhm:USDhm exchange rate.
+
+## Staking
+
+Deposit USDhm into the Staking Vault to receive sUSDhm based on the current exchange rate.
+
+The amount of sUSDhm received depends on share price of the vault contract when user stakes. As yield accumulates, each sUSDhm becomes redeemable for more USDhm—so later stakers receive fewer sUSDhm per USDhm deposited, but each token is worth proportionally more.
+
+## Unstaking
+
+Request withdrawal to convert sUSDhm back to USDhm. A **7-day cooldown** applies before funds can be claimed.
+
+The cooldown exists to:
+- Allow orderly unwinding of LP and hedge positions
+- Prevent sudden capital flight during market stress
+- Protect remaining stakers from forced liquidations at unfavorable prices
+
+After the cooldown, claim your USDhm at any time. From there, USDhm can be redeemed for USDC immediately (subject to 0.1% fee).
+
+## Yield Accrual
+
+sUSDhm uses a reward-bearing vault mechanism, inherited from the ERC-4626 standard.
+
+1. Protocol generates yield from LP fees minus hedging costs
+2. Net revenue flows to the Reward Manager
+3. Reward Manager periodically deposits yield into the Staking Vault
+4. The sUSDhm:USDhm exchange rate increases accordingly
+
+Users don't need to claim or restake—returns are automatically reflected in the redemption value of sUSDhm.
+
+## Reward Distribution
+
+Yield is distributed via a smoothed mechanism to reduce volatility in the reported APY:
+
+$$
+\text{Target APY} = (\text{Collateralization Ratio} - \text{Target Ratio}) × \frac{\text{Distribution Interval}}{365}
+$$
+
+$$
+\text{Actual APY} = \text{Previous APY} × \lambda + \text{Target APY} × (1 - \lambda)
+$$
+where $\lambda$ is the smoothing factor.
+
+This smoothing prevents sharp APY swings from short-term P&L fluctuations while ensuring long-term returns accurately reflect protocol performance.

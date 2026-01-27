@@ -1,0 +1,55 @@
+---
+title: "PnL Profile of LP Position"
+description: "The payoff characteristics of delta-neutral liquidity positions"
+---
+
+This section analyzes the Profit and Loss (PnL) profile of borrowed LP positions, where the initial directional exposure has been neutralized. Understanding this profile is essential for grasping the risks and hedging requirements of the Huam protocol.
+
+A "Borrowed LP" is distinct from a standard ("Funded") LP position. While a standard LP is long the underlying asset, a Borrowed LP is constructed to be **delta-neutral** at inception.
+
+This can be achieved through two equivalent methods:
+1.  **Borrow & Deposit**: You deposit stablecoins (e.g., USDC) into a lending protocol, borrow the volatile asset (e.g., ETH), and pair them to provide liquidity.
+2.  **Deposit & Hedge**: You provide liquidity using your own capital (ETH + USDC) and simultaneously open a short position of equal value on a perpetual exchange.
+
+In both cases, the net result is a position that effectively holds **zero initial delta**. The primary driver of PnL is no longer the direction of the market, but the **volatility** of the asset within the LP range.
+
+## Concave PnL Profile
+
+The PnL of a Borrowed LP position exhibits a **concave shape** (negative convexity). The position is at its maximum value At $P_{entry}$.
+As price deviates from $P_{entry}$, the position loses value regardless of whether the price goes up or down.
+
+
+<Columns cols="2">
+    <img src="/images/image2.png" alt="PnL Profile of Funded LP Position" />
+    <img src="/images/image3.png" alt="PnL Profile of Borrowed LP Position" />
+</Columns>
+
+The left figure shows the PnL of a funded LP position at different prices. The right figure shows the PnL of a borrowed LP position at different prices.
+
+This concavity arises from the mismatch between the hedging instrument and the LP position:
+*   The **Short Hedge** (or debt) is linear. If price moves +10%, the short loses exactly 10%.
+*   The **LP Position** is non-linear (convex). As price rises, the LP sells the appreciating asset (ETH) for the stable asset (USDC). It captures less upside than a simple hold.
+
+When you subtract the linear hedge from the LP curve, the result is a curve that bends downwards on both sides. In financial terms, this position is equivalent to being **Short a Straddle**. You are short volatility; you profit from fees when the price is stable, but suffer losses ("Impermanent Loss") when the price moves.
+
+### Why the LP Position Bleeds on Movement
+
+The mechanics become intuitive when you trace what happens to your LP holdings as price moves.
+
+When ETH price rises, the AMM rebalances your position—you end up holding less ETH and more USDC. Your position has effectively sold the appreciating asset on the way up, capturing less upside than simply holding. This is the behavior of someone who is **short a call option**.
+
+When ETH price falls, the opposite rebalancing occurs. You end up holding more ETH and less USDC. Your position has accumulated more of the depreciating asset on the way down. This is the behavior of someone who is **short a put option**.
+
+Combined, a delta-neutral LP is short both a call and a put. The position loses value whenever price moves away from the entry point, regardless of direction.
+
+## Quantifying the Loss
+
+For a Uniswap V3 position with a geometrically symmetric price range $[P_a, P_b]$ centered around the entry price $P_0$, the PnL of the borrowed position can be approximated.
+
+The maximum loss occurs when the price reaches either boundary ($P_a$ or $P_b$). The maximum loss at the boundary is approximately 25% of the range's half-width.
+
+Mathematically, if $r$ is the percentage deviation to the boundary (e.g., 10% or 0.1):
+
+$$
+\text{IL}_{max} \approx \frac{r}{4}
+$$

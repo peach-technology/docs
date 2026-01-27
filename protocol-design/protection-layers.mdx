@@ -1,0 +1,32 @@
+---
+title: "Protection Layers"
+description: "Understanding the risk management and buffer system"
+---
+
+Huam implements a multi-layered system to protect user capital. Risks are absorbed by dedicated buffers before affecting staker principal.
+
+## Risk Tranching
+
+Many risk-aware Defi services adopt "tranching" model to stratify risk. In this model, **Senior Tranches** bear losses last, while **Junior Tranches** absorb losses first. The challenge is that few users want to provide junior (first-loss) capital.
+
+Huam addresses this by institutionalizing the Junior Tranche at the protocol level. Instead of relying on external first-loss providers, the protocol maintains its own buffers funded by retained earnings.
+
+## Protection Hierarchy
+
+When the strategy incurs losses, capital is consumed in a defined order—each layer absorbs impact before passing to the next.
+
+1. **Reward Manager**: Accumulated yield in the Reward Manager acts as first-loss capital. This buffer absorbs operational costs, hedging slippage, and temporary drawdowns before they reach stakers.
+
+2. **Protocol Reserves**: If the Reward Buffer is depleted, protocol reserves are consumed to absorb further losses. This provides an additional cushion before user funds are affected.
+
+3. **Staked Assets**: User principal in sUSDhm is the senior tranche—exposed to loss only after Layer 1 and Layer 2 are exhausted. Stakers accept this tail risk in exchange for yield.
+
+## Structural Isolation
+
+The protocol enforces strict separation between stable money and yield-generating capital.
+
+- **USDhm**: Unstaked USDhm is backed 1:1 by USDC held in the Minter contract. This collateral is never deployed to strategies—it sits idle, ensuring USDhm holders can always redeem regardless of strategy performance.
+
+- **sUSDhm**: By staking, users convert risk-free USDhm into a yield-bearing asset. They gain exposure to protocol revenue but accept the risk that severe, sustained losses could impair principal after buffers are exhausted.
+
+This isolation means USDhm peg stability is completely independent of strategy outcomes. Even if sUSDhm holders experience losses, USDhm remains fully redeemable.

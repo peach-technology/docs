@@ -1,0 +1,65 @@
+---
+title: "Dynamic Option Replication"
+description: "Replicating option payoffs with perpetual futures when options markets don't exist"
+---
+
+The hedging approach described previously requires options with convex payoffs. In traditional markets, we would simply purchase these options from an exchange. In crypto, this is often not practical.
+
+## The Options Market Problem
+
+Crypto options markets are illiquid and limited to a handful of major assets—primarily BTC and ETH. Even for these assets, liquidity concentrates at specific strikes and expirations, with wide bid-ask spreads.
+
+For token pairs like CRV-WETH, ARB-USDC, or other DeFi native assets, options markets simply don't exist. There is no venue where we could purchase the straddles needed to hedge these positions.
+
+## Dynamic Replication
+
+Rather than buying options directly, Huam **replicates** the desired option payoffs using perpetual futures. This technique, known as delta hedging or dynamic replication, is well-established in traditional finance.
+
+The core insight: any option's payoff can be approximated by continuously adjusting a position in the underlying asset to match the option's **delta**—its sensitivity to price changes.
+
+### How It Works
+
+Using an option pricing model (such as Black-Scholes), we calculate the theoretical delta of a straddle at any given price and time. We then maintain a perpetual position sized to match this delta.
+
+As price moves and time passes, the delta changes, and we rebalance the perpetual position accordingly:
+
+| Price Movement | Straddle Delta | Perpetual Action |
+|----------------|----------------|------------------|
+| At entry (ATM) | Near zero | Small or no position |
+| Price rises | Positive (call dominates) | Go long |
+| Price falls | Negative (put dominates) | Go short |
+| Near expiry | More extreme swings | More frequent rebalancing |
+
+By continuously adjusting our perpetual position to track delta changes, we replicate the option's payoff without ever holding the actual option.
+
+## Practical Considerations
+
+Replication is not a perfect substitute for holding actual options. Several factors affect the quality of the hedge:
+
+**Path Dependency**
+The cost of replication depends on the realized path of price, not just the final outcome. Frequent large moves (high realized volatility) increase rebalancing costs.
+
+**Discrete Rebalancing**
+Perfect replication requires continuous adjustment. In practice, we rebalance at discrete intervals, introducing some tracking error.
+
+**Transaction Costs**
+Each rebalancing trade incurs fees and potentially slippage, which accumulate over the position's life.
+
+**Model Risk**
+Replication relies on theoretical option deltas. If model assumptions don't match reality, the hedge may be imperfect.
+
+## When Replication Outperforms
+
+Despite these limitations, replication using perpetuals is often more cost-effective than purchasing options—particularly when:
+
+- Implied volatility is elevated relative to subsequent realized volatility
+- Options markets are illiquid with wide spreads
+- No options market exists for the asset pair
+
+Replication also enables hedging on assets where no other solution exists, dramatically expanding the universe of viable LP opportunities.
+
+## Alignment with LP Exposure
+
+In practice, applying the option delta to our portfolio often results in a net position close to the LP's underlying token amounts. This provides intuitive alignment between the hedge and the exposure.
+
+The replication approach allows Huam to apply sophisticated hedging strategies across the full spectrum of DeFi assets, not just the few with liquid options markets.

@@ -1,0 +1,34 @@
+
+Peg Mechanism
+Maintaining Stability: The Foundation of NUSD
+Ensuring a stable peg is critical to the reliability and utility of NUSD. The protocol employs arbitrage-driven mechanisms to maintain NUSD's $1 peg, even during periods of market volatility. This system works alongside a direct 1:1 redemption feature for major stablecoins, providing a robust and reliable foundation for price stability.
+
+Arbitrage as a Stabilizing Force
+Arbitrage serves as a cornerstone of NUSD's price stability. When the price of NUSD deviates from $1 in external markets, arbitrageurs step in to profit from these discrepancies by minting or redeeming NUSD directly through the protocol. This process naturally realigns NUSD's market price with its $1 target by adjusting supply and demand dynamics.
+
+In addition to arbitrage, the protocol ensures NUSDs stability through its 1:1 USD redeemability for stablecoins, which provides consistent liquidity and price confidence. Users can redeem NUSD at any time, ensuring that its inherent value is always backed by the stability of stablecoin reserves.
+
+Arbitrage Scenarios
+There are two primary scenarios where arbitrage and the 1:1 redeemability mechanism work together to maintain the peg:
+
+NUSD Trades Below $1 in External Markets
+If NUSD is priced below $1 on an external market, an arbitrageur can:
+
+Purchase NUSD at the discounted price ($0.95) on the external market.
+Redeem the purchased NUSD directly through the protocol at its full value of $1, receiving USDC.
+Realize a profit from the price difference.
+This activity reduces the supply of NUSD in circulation, helping restore its price to the $1 peg.
+
+NUSD Trades Above $1 in External Markets
+If NUSD is priced above $1 on an external market, an arbitrageur can:
+
+Mint NUSD directly from the protocol using USDC at the fixed 1:1 USD ratio.
+Sell the newly minted NUSD on the external market at the higher price ($1.05).
+Profit from the price difference.
+This activity increases the supply of NUSD in circulation, driving its price back toward $1.
+
+Backing and Liquidity Management
+NUSD is fully backed by a diversified portfolio of assets, with a portion held in major stablecoins to facilitate 1:1 redemptions.
+A fraction of the reserves (e.g., 0.50%) is held directly in the mint-and-redeem contract to enable immediate redemptions, while the protocol systematically replenishes this balance from the broader reserve pool.
+This ensures that NUSD holders can always redeem their tokens for stablecoin, providing liquidity and stability even during periods of heightened redemption activity.
+The redeemability of NUSD for an equivalent value in stablecoins ensures that its price remains stable during temporary liquidity shocks or market dislocations. This mechanism, supported by built-in arbitrage incentives, creates a self-correcting system that helps maintain NUSD’s peg even during periods of high demand or volatility. Redemptions may take up to 48 hours to process and can be queued during periods of elevated activity.

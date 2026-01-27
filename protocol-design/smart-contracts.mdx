@@ -1,0 +1,67 @@
+---
+title: "Smart Contract Architecture"
+description: "Overview of the protocol's modular smart contract design"
+---
+
+Huam implements a modular "Hub-and-Spoke" architecture that separates core protocol functions from cross-chain strategy execution. This design secures the stablecoin ledger on a single network while enabling capital deployment across multiple chains.
+
+## System Overview
+
+| Domain | Location | Function |
+| --- | --- | --- |
+| **Core Contracts (Hub)** | Main Network (Base) | User deposits, stablecoin accounting, yield distribution |
+| **Strategy Contracts (Spokes)** | Multiple EVM chains | LP position management, hedging, fee collection |
+
+## Core Contracts
+
+Core contracts manage the protocol's ledger and all user-facing interactions. They are deployed on the main network and control the issuance of USDhm and sUSDhm.
+
+### Minter
+
+The gateway for USDhm issuance and redemption.
+
+- **Collateral Custody**: Holds USDC backing all *unstaked* USDhm. This capital is never deployed to strategies.
+- **Issuance**: Mints USDhm 1:1 against USDC deposits.
+- **Redemption**: Burns USDhm to return USDC to users (minus 0.1% fee).
+
+### Staking Vault
+
+The interface for earning yield, implementing the ERC-4626 tokenized vault standard.
+
+- **Share Accounting**: Issues sUSDhm representing a user's proportional claim on the yield-generating portfolio.
+- **Fund Routing**: Routes staked USDC to the Strategy layer via the Collector.
+- **Yield Accrual**: Receives rewards from the Reward Manager, increasing the sUSDhm exchange rate over time.
+
+### Reward Manager
+
+The central buffer between raw protocol earnings and user distributions.
+
+- **Revenue Aggregation**: Collects yield bridged back from Strategy Contracts across all chains.
+- **Smoothed Distribution**: Streams rewards to the Staking Vault at a controlled rate to reduce APY volatility.
+- **First-Loss Buffer**: Absorbs short-term losses before they affect staker principal. See [Protection Layers](/protocol-architecture/protection-layers).
+
+## Strategy Contracts
+
+Strategy contracts handle capital deployment and position management. They are deployed on each chain where the protocol operates.
+
+### Collector
+
+The satellite treasury on each chain.
+
+- **Capital Routing**: Receives funds from Core and allocates to Adaptors based on target weights.
+- **Cross-Chain Bridging**: Manages movement of principal (outbound) and revenue (inbound) between chains.
+- **NAV Reporting**: Aggregates position values from all connected Adaptors to report total deployment value.
+
+### Adaptors
+
+Specialized connectors for external DeFi protocols.
+
+- **Protocol Integration**: Each Adaptor interfaces with a specific DEX (Uniswap V3, Aerodrome, etc.).
+- **Position Management**: Mints, holds, and manages LP NFTs or position tokens.
+- **Standardized Interface**: Executes atomic commands (Deposit, Withdraw, Collect) from the Collector.
+
+Adaptors are intentionally minimal—they contain no business logic, only execution. This isolation limits the blast radius of any single integration failure.
+
+## Contract Addresses
+
+See [Contract Addresses](/resources/contract-addresses) for deployed contract addresses across all networks.

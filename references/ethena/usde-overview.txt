@@ -1,0 +1,72 @@
+# USDe Overview
+
+Ethena enables the creation and redemption of a delta-neutral synthetic dollar, *USDe*, crypto's first fully-backed, onchain, scalable, and censorship-resistant form of money.&#x20;
+
+The mechanism backing *USDe* enables sUSDe, the first "Internet Money" offering a crypto-native, reward-accruing asset, derived from liquid asset rewards (to the extent utilized in backing) and the funding and basis spread available in perpetual and futures markets.
+
+## Peg Stability Mechanism
+
+{% hint style="info" %}
+*USDe* derives its relative peg stability from executing delta-neutral hedges with respect to the underlying backing assets.&#x20;
+
+Hedging the price change risk of the backing asset in the same size minimizes fluctuations in the backing asset price as the change in value of the backing assets asset is generally offset by the change in value of the hedge.&#x20;
+
+This enables the synthetic USD value of the backing assets to remain relatively stable in most market conditions.
+{% endhint %}
+
+Ethena does not use any material leverage to margin the delta hedging derivatives positions beyond the natural state as a result of exchanges applying slight discounts to the value of backing assets to the extent used as backing and margin collateral on the initial hedge and issuance of *USDe*.&#x20;
+
+#### Key Information
+
+1. Users are able to acquire USDe in permissionless external liquidity pools.
+2. Approved parties from permitted jurisdictions who pass KYC/KYB screening are able to **mint** & **redeem** *USDe* on-demand with Ethena contracts directly following whitelisting. See Supplemental USDe Terms and Conditions.
+3. There is minimal reliance upon traditional banking infrastructure as trustless backing assets are held and stored within the crypto ecosystem.&#x20;
+
+#### **Mechanic Example**
+
+1. A whitelisted user provides \~$100 of *USDT or USDC* and receives \~100 newly-minted *USDe* atomically in return less the gas & execution costs to execute the hedge.
+2. Slippage & execution fees are included in the price when **minting** & **redeeming**. Ethena earns no profit from the **minting** or **redeeming of** *USDe*.
+3. The protocol opens a corresponding short perpetual position for the approximate same notional dollar value on a derivatives exchange.
+4. The backing assets are transferred directly to an "Off Exchange Settlement" solution. Backing assets remain onchain and custodied by off exchange service providers to minimize counterparty risk.&#x20;
+5. Ethena delegates, but never transfers custody of, backing assets to derivatives exchanges to margin the short perpetual hedging positions.
+
+## Generated Revenue
+
+The Ethena protocol generates three sustainable sources of revenue from the backing assets.&#x20;
+
+The protocol revenue is derived from:
+
+1. The funding and basis spread from the delta hedging derivatives positions.
+2. The rewards earned from liquid stable backing assets.
+3. Staked ETH assets receiving consensus and execution layer rewards.
+
+Revenue from staked assets is floating by nature and denominated in the native asset - for example, liquid staked ETH tokens are typically denominated in *ETH*.&#x20;
+
+The funding and basis spread can be floating or fixed depending upon if the protocol uses non-deliverable or deliverable derivatives positions to hedge the backing asset delta.
+
+Rewards from liquid stables depends on where the assets are held and the rates offered by external stakeholders. These rates may vary based on the institution or platform managing the stables. For example, certain platforms may offer fluctuating interest rates on deposits, which can affect the overall returns.
+
+The funding and basis spread has historically generated a positive return given the mismatch in demand and supply for leverage in crypto as well as the existence of positive baseline funding. \
+\
+If funding rates are deeply negative for a sustained period of time, such that the staked asset revenue cannot cover the funding and basis spread cost, the Ethena "reserve fund" is designed to bear the cost.
+
+[Learn more about the protocol revenue.](https://docs.ethena.fi/solution-overview/protocol-revenue-explanation)
+
+## Risks
+
+The protocol is exposed to [various risks](https://docs.ethena.fi/solution-overview/risks) including but not limited to:
+
+1. Smart Contract Risk
+2. External Platform Risk
+3. Liquidity Risk
+4. Custodial Operational Risk
+5. Exchange Counterparty Risk
+6. Market Risk
+
+Ethena recognizes these risks and actively attempts to ameliorate & diversify these risks as much as possible. In practice, this means the system uses multiple providers for each step of the workflow and actively monitors all partners and market conditions.&#x20;
+
+{% hint style="info" %}
+Every element of the Ethena design has been formulated with risk mitigation in mind including the use of custodians, absence of material leverage, and diversification constraints on the hedging positions
+{% endhint %}
+
+Please refer to the [*USDe* Risk](https://docs.ethena.fi/solution-overview/risks) section for more information.

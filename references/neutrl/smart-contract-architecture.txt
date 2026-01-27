@@ -1,0 +1,17 @@
+Smart Contract Architecture
+Neutrl implements a modular architecture centered on NUSD, its native synthetic dollar. The protocol's smart contract infrastructure enables transparent minting and redemption of NUSD against multiple collateral types while providing yield generation through an integrated staking mechanism.
+
+The architecture prioritizes modularity, segregating core functionalities into specialized systems and contracts. This design philosophy enhances security, simplifies maintenance, and ensures transparent onchain operations.
+
+The NUSD minting and redemption system employs a modular architecture centered on Router as the primary interface. Users deposit collateral to mint NUSD or burn NUSD to redeem collateral, with all assets secured in AssetReserve. From AssetReserve, designated custodians wallet (Fireblocks, Copper) can settle assets off-chain to execute trading strategies.
+
+Specialized Minter and Redeemer contracts handle asset-specific logic while maintaining standardized flows. The system features dual redemption paths—instant and queued—ensuring continuous liquidity access regardless of reserve conditions. This design enables flexible multi-collateral support with consistent security and operational efficiency.
+
+Core Systems
+Neutrl operates through two primary interconnected systems that govern the complete lifecycle and utility of NUSD.
+
+NUSD Minting & Redemption System
+Manages the minting and redemption of NUSD tokens through collateral deposits and withdrawals, maintaining collateralization and the synthetic dollar peg.
+
+NUSD Staking & Value Accrual System
+Facilitates yield distribution to protocol participants through the sNUSD staking mechanism, enabling passive yield distribution for NUSD holders.

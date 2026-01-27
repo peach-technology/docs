@@ -1,0 +1,26 @@
+---
+title: "How Huam Works"
+description: "Understanding the flow of funds through the protocol"
+---
+
+![How Huam Works](/images/image.png)
+
+## Fund Flow
+
+1. **Deposit**: User deposits USDC to mint USDhm 1:1. Collateral held in Minter contract.
+2. **Stake**: User stakes USDhm into the Staking Vault, receiving sUSDhm. The corresponding USDC transfers from Minter to Collector.
+3. **Deploy**: Collector allocates funds to hedged LP positions across DEXs (via Adaptors) and opens corresponding hedge positions on exchanges.
+4. **Earn**: LP trading fees minus hedging costs flow to the Reward Manager, which releases yield to the Staking Vault—increasing the sUSDhm exchange rate.
+5. **Withdraw**: User unstakes sUSDhm (7-day cooldown), receives USDhm plus accumulated yield, then redeems for USDC.
+
+Unstaked USDhm remains fully backed by USDC in the Minter contract, ensuring 1:1 redemption at any time regardless of strategy performance.
+
+## The Hedging Mechanism
+
+Huam's yield comes from DEX LP fees, but LP positions carry impermanent loss (IL) risk. The protocol hedges this using perpetual futures:
+
+1. When capital enters an LP position (e.g., ETH-USDC), the protocol gains price exposure to ETH.
+2. A short perpetual position offsets this delta, making the combined position market-neutral.
+3. As prices move, the hedge is dynamically adjusted to maintain neutrality.
+
+The result: trading fee yield flows to stakers while price movements are neutralized. See [Hedging Impermanent Loss](/protocol-mechanism/hedging-impermanent-loss) for full methodology.

@@ -4,33 +4,44 @@ description: "Frequently asked questions about Huam"
 ---
 
 <AccordionGroup>
+
+<Accordion title="Where does the yield come from?">
+Huam generates yield primarily from two sources:
+1.  **DEX Trading Fees**: The protocol provides liquidity to decentralized exchanges (like Uniswap or Aerodrome), earning a share of every trade.
+2.  **Funding Rates**: To hedge the market exposure of these positions, the protocol holds short positions in perpetual futures. When funding rates are positive, these shorts earn payments from long traders.
+</Accordion>
+
+<Accordion title="What is the difference between USDhm and sUSDhm?">
+*   **USDhm** is the stablecoin. It is designed for payments and transfers. It does not earn yield but is backed 1:1 by USDC in the secure Minter contract, with zero exposure to strategy risks.
+*   **sUSDhm** is the staked version. It is an investment token that represents a share of the protocol's trading portfolio. It earns yield but carries the risks associated with the trading strategy.
+</Accordion>
+
 <Accordion title="How does USDhm maintain its peg?">
-USDhm is minted and redeemed 1:1 with USDC. There is no algorithmic mechanism or fractional reserve—every USDhm in circulation is backed by USDC held in protocol contracts. The only trust assumptions are USDC's own peg stability and the security of the underlying blockchain.
+USDhm is backed 1:1 by USDC held specifically in the **Minter** contract. This capital is isolated and never deployed into trading strategies. Because any user can redeem USDhm for USDC 1:1 (minus a small fee), arbitrageurs naturally keep the market price close to $1.00.
+</Accordion>
+
+<Accordion title="Who can mint and redeem USDhm?">
+*   **Minting**: Restricted to whitelisted market makers to ensure controlled growth.
+*   **Redemption**: Open to **everyone**. Any user holding USDhm can redeem it directly with the protocol for USDC.
+*   **Secondary Market**: Anyone can buy or sell USDhm on decentralized exchanges (DEXs) without interacting with the protocol directly.
 </Accordion>
 
 <Accordion title="Can I lose money staking sUSDhm?">
-Yes. Huam runs an active trading strategy with inherent risks. While positions are hedged, costs can exceed revenue in certain conditions: hedging costs during high volatility, estimation errors in pool selection, or transaction costs during rebalancing.
+Yes. Staking involves converting your USDC-backed stablecoin into a share of an active trading portfolio. While the strategy is hedged to be delta-neutral, risks such as extreme volatility (where hedging costs exceed fees) or prolonged negative funding rates can lead to drawdowns.
 
-Short-term losses are absorbed by the Reward Manager buffer. However, if losses exceed the buffer, they are passed to the Staking Vault, reducing the sUSDhm exchange rate. Stakers should understand this is a managed yield strategy, not a risk-free return.
+However, Huam is designed with a **Reward Manager** that acts as a protocol-managed junior tranche. This buffer consists of retained protocol earnings and unallocated yield, which is used to absorb initial losses and volatility. Stakers only experience a reduction in the sUSDhm exchange rate if these protection layers are completely exhausted.
 </Accordion>
 
-<Accordion title="Who can mint USDhm?">
-Minting is restricted to whitelisted addresses. Non-whitelisted users can acquire USDhm on secondary markets (e.g., DEX pools) and stake it permissionlessly. Staking, unstaking, and redeeming are open to all users.
+<Accordion title="What happens if the Reward Manager buffer runs out?">
+The Reward Manager acts as a "Junior Tranche," absorbing small losses or costs to protect stakers. However, if the protocol experiences a significant drawdown that depletes this entire buffer, the loss will be passed on to the Staking Vault. This would result in a decrease in the exchange rate of sUSDhm, meaning your staked principal would be worth less.
 </Accordion>
 
-<Accordion title="Can I withdraw at any time?">
-Unstaking sUSDhm requires a 7-day lockup period. After initiating unstake, you wait 7 days before claiming USDhm. Once you have USDhm, redeeming to USDC is available immediately with no delay, subject to a 0.1% fee.
+<Accordion title="Can I withdraw from staking at any time?">
+There is a **7-day cooldown period** for unstaking sUSDhm. When you request to unstake, your assets enter a queue. This delay allows the protocol to orderly unwind complex trading positions and bridge funds back from other chains without incurring high slippage costs. After 7 days, you can claim your USDhm. Redemptions from USDhm to USDC are instant.
 </Accordion>
 
 <Accordion title="Is Huam audited?">
-Huam is currently in MVP phase. Smart contracts have not been fully audited. Users should not interact with the protocol without understanding the associated implementation risks. Audit status will be updated as the protocol matures.
+Huam is currently in its MVP phase. Smart contracts have not yet been fully audited. Users should exercise caution and understand that interacting with the protocol at this stage involves significant smart contract risk.
 </Accordion>
 
-<Accordion title="How is this different from other yield-bearing stablecoins?">
-Most yield-bearing stablecoins derive returns from basis arbitrage (funding rates) or off-chain assets (T-bills, money markets). Huam sources yield from DEX LP fees—a higher but more variable yield source. The tradeoff is increased complexity in position management and hedging, which the protocol handles automatically.
-</Accordion>
-
-<Accordion title="How can I verify protocol holdings and performance?">
-All LP positions, hedge positions, and P&L are verifiable onchain. The Collector and Adaptor contracts hold protocol assets directly—users can inspect positions, collateral levels, and historical performance at any time. Exchange margin balances used for hedging are held through OES (Off-Exchange Settlement) providers, keeping assets in custody while delegating trading access to exchanges.
-</Accordion>
 </AccordionGroup>

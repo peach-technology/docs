@@ -1,0 +1,35 @@
+# Rewards Mechanism Explanation
+
+## Context
+
+Users are able to receive rewards by staking their *USDe* and receiving *sUSDe* atomically in return.
+
+{% hint style="info" %}
+Once users stake their *USDe* for *sUSDe*, they begin to accrue rewards without any further action or cost. *USDe* that is staked is not rehypothecated in any way to generate returns.
+{% endhint %}
+
+## Overview
+
+The amount of *sUSDe* a user receives is determined by how much *USDe* was transferred as well as when it was transferred. Ethena's *sUSDe* utilizes a reward-bearing "Token Vault" mechanism, the same as [Rocketpool's rETH](https://docs.rocketpool.net/guides/staking/overview.html#the-reth-token) or [Binance's WBETH](https://www.binance.com/en/wbeth).
+
+The protocol does not rehypothecate, lend out, or otherwise utilize deposited *USDe* for any purpose. There is no need for any such action, as the *USDe* backing mechanic inherently creates value in the system.&#x20;
+
+This mechanism simply enables Ethena to provide rewards to ecosystem participants without users having to do any action to "earn" it. The *USDe* value of *sUSDe* grows on its own. When a user unstakes his or her *USDe*, the user receives an amount of *USDe* equal to the initial amount staked plus their share of rewards deposited in the staking contract as rewards while that user's *USDe* was staked, as reflected in the *USDe* value increase of *sUSDe*.
+
+## Important Notes
+
+* The amount of *sUSDe* you receive when you stake *USDe* is likely to be less in number, but valued at the equivalent amount of *USDe*. This is a result of the "Token Vault", reward-bearing mechanism and the ratio defined below in the worked example.
+* The value of *USDe* will remain worth the market trading price of *USDe* while *sUSDe* will grow in *USDe* value as the protocol deposits rewards in the staking contract daily.
+* If the protocol were to suffer a loss due to funding or another reason, Ethena's reserve fund is intended to bear the cost, rather than the staking contract.
+
+{% hint style="info" %}
+Users can only receive positive or flat rewards while staking *USDe;* periods of negative protocol revenue are not passed on to *sUSDe*.\
+\
+Ethena's reserve fund bears associated costs if funding is so negative that it causes negative protocol revenue.&#x20;
+{% endhint %}
+
+## Calculation & Worked Example
+
+*sUSDe*:*USDe* ratio = (total *sUSDe* supply) / (total *USDe* staked + total protocol revenue deposited in *USDe* terms)@c
+
+<figure><img src="https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2FhtSigIwZqCpJexJ47jEX%2FGroup%20427320584.png?alt=media&#x26;token=75b3951a-72e7-4156-b4fb-95dbb4bc8d3b" alt=""><figcaption></figcaption></figure>

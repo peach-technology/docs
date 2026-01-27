@@ -1,0 +1,25 @@
+# Delta-Neutral Stability
+
+### What is "delta"?
+
+"Delta" refers to the sensitivity of the derivatives contract to a change in the price of the underlying asset.&#x20;
+
+By way of example, if Ethena did not execute a hedge with respect to 1 ETH transferred by a minter upon mint of USDe, the backing of *USDe* would have a positive delta of 1 ETH. As a result, the USD value (and, by extension, *USDe* backing value) of the 1 ETH would change equally with the change in the spot market price of ETH.
+
+Read more: [Introduction to Option Greeks](https://insights.deribit.com/education/introduction-to-option-greeks/)
+
+### What is delta-neutral stability?
+
+A portfolio can be considered to be "delta-neutral" if it has a delta of 0. This means the portfolio is NOT exposed to the price change in the underlying value of the asset.
+
+Following on from the example above, where Ethena naturally has a positive delta of 1 *ETH* from a user providing 1 *ETH* of backing, if Ethena hedges 1 *ETH* worth of delta by going short a perpetual contract with a nominal position size equal to that 1 *ETH*, the delta of Ethena's portfolio is 0.
+
+Said differently. when a portfolio is delta-neutral, the value in USD terms remains constant regardless of market conditions (ie regardless of any change in the spot price of *ETH*). The price of *ETH* could triple and then fall by 90% one second after another & the USD value of the portfolio would remain unaffected (outside of momentary dislocations between spot and derivatives markets). This is because the profits from the 1 *ETH* tripling in price are perfectly offset by losses from the equal-in-size short perpetual position. \
+\
+[Here is a worked example of a portfolio being delta-neutral.](https://docs.ethena.fi/solution-overview/usde-overview/delta-neutral-examples)
+
+Ethena trades with no effective leverage across exchanges as the delta offsetting short perpetual positions are equal in size to the backing assets.
+
+To note, many institutional market makers remain delta-neutral to avoid profits/losses from price volatility and this is a very familiar concept across both traditional finance & digital assets.
+
+\ <br>

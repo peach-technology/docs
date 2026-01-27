@@ -1,0 +1,33 @@
+---
+title: "Huam USD"
+description: "Huam's synthetic dollar - minting, redeeming, and peg mechanics"
+---
+
+![USDhm Dual Token System](/images/image1.png)
+
+USDhm is a synthetic dollar backed 1:1 by USDC. It serves as the base unit of account within Huam and the entry point to the protocol's yield strategies.
+
+USDhm is not a yield-bearing token. Users who hold USDhm without staking maintain full USDC backing with zero exposure to strategy performance. The peg holds regardless of whether LP positions gain or lose.
+
+To earn yield, users stake USDhm to receive [sUSDhm](/protocol-architecture/staked-stablecoin).
+
+## Minting
+
+Approved users deposit USDC to mint USDhm at a 1:1 ratio. The collateral is held in the Minter contract until the corresponding USDhm is staked.
+
+Minting is currently restricted to whitelisted addresses. Non-whitelisted users can acquire USDhm on secondary markets.
+
+## Redeeming
+
+USDhm can be redeemed for USDC at any time at 1:1, minus a 0.1% fee. This fee covers operational costs of maintaining the backing infrastructure.
+
+USDC backing unstaked USDhm remains in the Minter contract at all times, ensuring redemption availability independent of strategy positions.
+
+## Peg Mechanism
+
+USDhm maintains its peg through arbitrage incentives:
+
+- **USDhm \< \$1**: Arbitrageurs buy USDhm on secondary markets and redeem for $1 of USDC, pocketing the difference.
+- **USDhm \> \$1**: Approved minters create new USDhm at $1 and sell at market price.
+
+These incentives naturally push USDhm toward parity with USDC.
