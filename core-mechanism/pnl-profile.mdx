@@ -32,7 +32,7 @@ This concavity arises from the mismatch between the hedging instrument and the L
 
 When you subtract the linear hedge from the LP curve, the result is a curve that bends downwards on both sides. In financial terms, this position is equivalent to being **Short a Straddle**. You are short volatility; you profit from fees when the price is stable, but suffer losses ("Impermanent Loss") when the price moves.
 
-### Why the LP Position Bleeds on Movement
+### Why the LP Position Bleeds on Volatility
 
 The mechanics become intuitive when you trace what happens to your LP holdings as price moves.
 
@@ -53,3 +53,5 @@ Mathematically, if $r$ is the percentage deviation to the boundary (e.g., 10% or
 $$
 \text{IL}_{max} \approx \frac{r}{4}
 $$
+
+For example, if the range is ±20% from the entry price, the maximum loss is approximately 5% of the initial investment.

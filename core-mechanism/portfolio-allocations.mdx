@@ -5,7 +5,7 @@ description: "How Huam selects pools, evaluates profitability, and allocates cap
 
 Huam continuously scans pools across multiple DEXs and chains to identify opportunities where fee income exceeds hedging costs. This section describes how the protocol evaluates, selects, and sizes positions.
 
-## Evaluating Opportunities: Fees vs. Option Premium
+## Profitability Condition
 
 At its heart, pool evaluation is a comparison between two quantities:
 
@@ -15,6 +15,15 @@ At its heart, pool evaluation is a comparison between two quantities:
 As established in previous sections, a delta-neutral LP position behaves like a short straddle. To neutralize this exposure, we need to acquire the equivalent of a long straddle. Whether we buy actual options or replicate them synthetically through perpetual rebalancing, there is a cost—the **option premium**.
 
 The profitability question becomes straightforward: **Do the fees earned from the pool exceed the premium required to hedge it?**
+
+| Income Sources | Cost Sources |
+|:----------------:|:--------------:|
+| DEX trading fees | Transaction costs |
+| Perpetual funding (when positive) | Realized loss due to rebalancing |
+| | Perpetual funding (when negative) |
+
+
+## Evaluating Opportunities: Fees vs. Option Premium
 
 If a pool generates 30% annualized fees, but the straddle premium for that asset is 40% annualized, the position loses money. Conversely, if fees are 30% and the premium is only 15%, the position captures a 15% spread.
 
