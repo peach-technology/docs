@@ -5,6 +5,8 @@ description: "How Huam neutralizes impermanent loss using perpetuals and dynamic
 
 The previous section established that a delta-neutral LP position behaves like a short straddle—it loses value when price moves in either direction. This section explains how Huam offsets that loss by manufacturing the opposite exposure.
 
+<img src="/images/composite_portfolio.png" alt="PnL Profile of Composite Position" />
+
 Huam's hedging strategy works in two layers:
 
 1. **Static hedge**: A short perpetual removes directional exposure, making the position delta-neutral at inception.

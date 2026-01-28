@@ -9,7 +9,7 @@ Yield-bearing stablecoins have proven product-market fit, yet the sources of tha
 
 Most yield-bearing stablecoins rely on one of two established strategies, both of which face inherent constraints:
 
-**Funding rate arbitrage** (e.g., Ethena) captures the spread between spot and perpetual futures prices. While effective, funding rates compress as capital enters. Yields that once exceeded 20% APR now typically sit at 5-15%, and returns can flip negative during bear markets when sentiment turns.
+**Funding rate arbitrage** (e.g., Ethena) captures the spread between spot and perpetual futures prices. While effective, funding rates compress as capital enters. Yields that once exceeded 20% APR now typically sit at 5-10%, and returns can flip negative during bear markets when sentiment turns.
 
 **RWA-backed yields** (e.g., Ondo, Usual) pass through off-chain interest from treasuries or money markets. These are stable and predictable, but structurally capped by real-world interest rates. When central bank rates are 4-5%, that is your ceiling.
 
@@ -23,13 +23,13 @@ Unlike funding rates, LP fee income doesn't compress with capital inflows to the
 
 The problem has never been finding yield; the problem is *keeping* it. Impermanent loss—the nonlinear drag from price movements—often leaks profit back to the market, turning a high-APR position into a loss for anyone who isn't actively managing their position.
 
-## Solution: Capture Without Complexity
+## Solution: LP Yield, Simplified
 
-Huam solves the "Passive LP Trap" by abstracting the complexity of active liquidity management into a single, liquid stablecoin.
+Huam abstracts active liquidity management into a single, liquid stablecoin, letting holders access LP yields without the impermanent loss that typically erodes them.
 
-*   **Connecting to Volume:** Huam connects stablecoin holders directly to trading volume. Unlike funding rates—which depend on market "greed"—swap fees depend on activity. As long as people are trading, Huam is generating yield.
-*   **Automation & Protection:** The protocol performs the heavy lifting of dynamic delta-hedging. By neutralizing the price exposure of LP positions, Huam transforms a high-risk, high-maintenance strategy into a "set-and-forget" yield source.
-*   **Volatility as an Asset:** Instead of fearing market swings, Huam turns volatility into yield. High volatility typically leads to increased swap volume and higher fee generation, allowing Huam to remain resilient even when directional markets are sideways or uncertain.
+At its core, the protocol runs continuous delta-hedging to neutralize price exposure on LP positions. This transforms what would otherwise be a high-risk, high-maintenance strategy into passive yield. Holders don't manage positions, rebalance, or time exits. They can simply stake on HUAM.
+
+Huam is built to perform across market conditions. While calm markets reduce hedging overhead, active markets drive higher fee volume. This balance allows the protocol to generate yield whether conditions are steady or turbulent.
 
 ## Goal
 
