@@ -34,6 +34,8 @@ When you subtract the linear hedge from the LP curve, the result is a curve that
 
 ### Why the LP Position Bleeds on Volatility
 
+<img src="/images/borrowed_lp.png" alt="PnL Profile of Borrowed LP Position" />
+
 The mechanics become intuitive when you trace what happens to your LP holdings as price moves.
 
 When ETH price rises, the AMM rebalances your position—you end up holding less ETH and more USDC. Your position has effectively sold the appreciating asset on the way up, capturing less upside than simply holding. This is the behavior of someone who is **short a call option**.
@@ -43,8 +45,6 @@ When ETH price falls, the opposite rebalancing occurs. You end up holding more E
 Combined, a delta-neutral LP is short both a call and a put. The position loses value whenever price moves away from the entry point, regardless of direction.
 
 ## Quantifying the Loss
-
-<img src="/images/borrowed_lp.png" alt="PnL Profile of Borrowed LP Position" />
 
 For a Uniswap V3 position with a geometrically symmetric price range $[P_a, P_b]$ centered around the entry price $P_0$, the PnL of the borrowed position can be approximated.
 

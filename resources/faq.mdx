@@ -13,7 +13,11 @@ Huam generates yield primarily from two sources:
 
 <Accordion title="What is the difference between USDhm and sUSDhm?">
 *   **USDhm** is the stablecoin. It is designed for payments and transfers. It does not earn yield but is backed 1:1 by USDC in the secure Minter contract, with zero exposure to strategy risks.
-*   **sUSDhm** is the staked version. It is an investment token that represents a share of the protocol's trading portfolio. It earns yield but carries the risks associated with the trading strategy.
+*   **sUSDhm** is the staked version of USDhm. It is an investment token that represents a share of the protocol's trading portfolio. It earns yield but carries the risks associated with the trading strategy.
+</Accordion>
+
+<Accordion title="How is Huam different from other stablecoins?">
+Most yield-bearing stablecoins derive returns from basis arbitrage (funding rates) or off-chain assets (T-bills, money markets). Huam sources yield from DEX LP fees—a higher but more variable yield source. The tradeoff is increased complexity in position management and hedging, which the protocol handles automatically.
 </Accordion>
 
 <Accordion title="How does USDhm maintain its peg?">
@@ -26,14 +30,14 @@ USDhm is backed 1:1 by USDC held specifically in the **Minter** contract. This c
 *   **Secondary Market**: Anyone can buy or sell USDhm on decentralized exchanges (DEXs) without interacting with the protocol directly.
 </Accordion>
 
+<Accordion title="How can I trust Huam manage collateral safe">
+All LP positions on DEXs, hedge positions on perpetual exchanges are verifiable onchain. The Collector and Adaptor contracts hold protocol assets directly—users can inspect positions, collateral levels, and historical performance at any time. Exchange margin balances used for hedging are held through OES (Off-Exchange Settlement) providers, keeping assets in custody while delegating trading access to exchanges.
+</Accordion>
+
 <Accordion title="Can I lose money staking sUSDhm?">
 Yes. Staking involves converting your USDC-backed stablecoin into a share of an active trading portfolio. While the strategy is hedged to be delta-neutral, risks such as extreme volatility (where hedging costs exceed fees) or prolonged negative funding rates can lead to drawdowns.
 
 However, Huam is designed with a **Reward Manager** that acts as a protocol-managed junior tranche. This buffer consists of retained protocol earnings and unallocated yield, which is used to absorb initial losses and volatility. Stakers only experience a reduction in the sUSDhm exchange rate if these protection layers are completely exhausted.
-</Accordion>
-
-<Accordion title="What happens if the Reward Manager buffer runs out?">
-The Reward Manager acts as a "Junior Tranche," absorbing small losses or costs to protect stakers. However, if the protocol experiences a significant drawdown that depletes this entire buffer, the loss will be passed on to the Staking Vault. This would result in a decrease in the exchange rate of sUSDhm, meaning your staked principal would be worth less.
 </Accordion>
 
 <Accordion title="Can I withdraw from staking at any time?">
