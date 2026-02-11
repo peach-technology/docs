@@ -1,25 +1,27 @@
 ---
 title: "What is Huam"
-description: "Introduction to Huam protocol and its core components"
+description: "Introduction to the Huam protocol and its core components"
 ---
 
-Huam is a synthetic dollar protocol that captures DEX liquidity provision yield through hedged, delta-neutral strategies—delivering sustainable returns from real onchain trading activity.
+Huam is a yield-bearing stablecoin protocol built on hedged DEX liquidity provision.
+
+Huam systematizes liquidity provision and derivatives hedging within a structured stablecoin framework, enabling access to high-return onchain strategies without direct management of LP positions or hedge parameters.
 
 ## Key Properties
 
 | Attribute | Description |
-| :---: | :--- |
-| **Profitability** | Access to DEX trading fees—one of the highest sustainable yield sources in DeFi, less prone to compression than funding rates |
-| **Autonomousity** | No active position management required; protocol handles pool selection, rebalancing, and cross-chain deployment |
-| **Risk Management** | Derivative hedges neutralize impermanent loss, targeting delta-neutral returns from fee income | 
-| **Transparency** | All LP positions, hedge ratios, and P&L are verifiable onchain in real time |
+| :--- | :--- |
+| **High Return** | Huam captures DEX trading fees, one of the most profitable and inherently volatile yield sources in DeFi. The strategy offers higher return potential relative to funding-rate or RWA-based models, with performance driven by market trading activity. |
+| **Collateral Isolation** | USDhm remains backed 1:1 by USDC held separately from strategy capital. Strategy losses do not affect collateral backing unstaked USDhm or redemption availability. |
+| **Risk Management** | Huam applies systematic hedging to liquidity positions to mitigate directional exposure and reduce impermanent loss impact. Risk controls are embedded directly into protocol execution logic. |
+| **Transparency** | Liquidity positions, hedge exposure, reserves, and performance metrics remain verifiable onchain in real time. |
 
 ## Core Components
 
-The protocol operates through a dual-token system that cleanly separates stability from yield:
+Huam operates through a dual-token architecture separating stablecoin backing from yield exposure:
 
-- **USDhm** is Huam's synthetic dollar—fully backed, mintable and redeemable 1:1 with USDC. Holding USDhm alone provides zero exposure to strategy performance. The peg holds regardless of whether the yield strategy gains or loses.
+- **USDhm** is Huam’s stablecoin. USDhm is mintable and redeemable 1:1 with USDC. Unstaked USDhm remains fully backed by USDC held in the Minter contract and is never deployed into yield strategies.
 
-- **sUSDhm** is the yield-bearing token. Built on the ERC-4626 vault standard, sUSDhm appreciates against USDhm as yield accrues. Stake USDhm to receive sUSDhm; unstake to redeem for more USDhm than you deposited. All positions, hedges, and P&L are verifiable onchain.
+- **sUSDhm** is the yield-bearing token built on the ERC-4626 vault standard. Staking USDhm converts stable collateral into strategy exposure. sUSDhm reflects realized strategy performance and may appreciate or depreciate depending on returns.
 
-This architecture ensures that users who want stability get stability, and users who want yield get yield—with no confusion between the two.
+The dual-token structure maintains strict separation between stablecoin collateral and strategy capital, preserving redemption integrity while enabling performance exposure through staking.
